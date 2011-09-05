@@ -52,6 +52,7 @@
             var feed, windowWidth, imageInfos = [];
 
             initFeed = function (data) {
+                console.log(data);
                 feed = data.feed;
             };
 
@@ -70,11 +71,11 @@
                     ratio = Math.min(ratio, 1.0);
                     ratio = Math.max(ratio, 0.0);
 
-                    var transform = "rotate(" + Math.floor(90*(1.0-ratio)) + "deg)";
+                    var transform = "rotate(" + Math.floor(90*(0.5-ratio)) + "deg)";
                     //item.img.css("-moz-transform", transform);
                     //item.img.css("-webkit-transform", transform);
                     //item.img.css("transform", transform);
-                    //item.img.css("opacity", 1.0 - Math.abs(ratio - 0.5) * 2.0);
+                    item.img.css("opacity", 1.0 - Math.abs(ratio - 0.5) * 2.0);
                 }
             }
 
@@ -90,7 +91,7 @@
                 for (var i = 0; i < 4; i++) {
                     _.each(feed.entry, function (entry) {
                         var elem = $('<td></td>');
-                        var img = $('<img alt="" src="' + entry.content.src + '"/>');
+                        var img = $('<img alt="" src="' + entry["media$group"]["media$thumbnail"][1].url + '"/>');
                         $(elem).append(img);
                         $("#list-container").append(elem);
                         elem.click(function () {
