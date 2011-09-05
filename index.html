@@ -2,9 +2,47 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+
+    <style type="text/css">
+
+        body {
+            overflow: auto;
+            overflow-y: hidden;
+            -ms-overflow-y: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        #top-container {
+            margin-left: 5px;
+        }
+
+        #list-container img {
+            display: inline;
+            height: 100px;
+            margin: 5px 5px 0 0;
+        }
+
+        #image-container {
+            position: fixed;
+            top: 113px;
+            bottom: 8px;
+            left: 8px;
+            right: 8px;
+            text-align: center;
+        }
+
+        #image-display {
+            border: 1px solid black;
+        }
+
+    </style>
+
     <script type="text/javascript" src="lib/jquery-1.6.1.js"></script>
     <script type="text/javascript" src="lib/less-1.0.41.min.js"></script>
     <script type="text/javascript" src="lib/underscore.js"></script>
+    <script type="text/javascript" src="lib/backbone.js"></script>
+
     <script type="text/javascript">
 
         var initFeed;
@@ -15,12 +53,33 @@
 
             initFeed = function (data) {
                 feed = data.feed;
+            };
+
+            function onResize() {
+                $("#image-display")
+                        .attr("height", window.innerHeight - 140);
+            }
+
+            function onScroll() {
+
             }
 
             $(function () {
-                _.each(feed.entry, function (item) {
-                    $("body").append("<img src=\"" + item.content.src + "\" />");
-                });
+                for (var i = 0; i < 4; i++) {
+                    _.each(feed.entry, function (entry) {
+                        var elem = $('<td><img alt="" src="' + entry.content.src + '"/></td>');
+                        $("#list-container").append(elem);
+                        elem.click(function () {
+                            $("#image-display").attr("src", entry.content.src);
+                        });
+                    });
+                }
+
+                $(window)
+                        .scroll(onScroll)
+                        .resize(onResize);
+
+                onResize();
             });
 
         })();
@@ -30,6 +89,11 @@
     <script type="text/javascript" src="https://picasaweb.google.com/data/feed/base/user/101239827031429117300/albumid/5641510119136361361?alt=json-in-script&callback=initFeed&kind=photo&authkey=Gv1sRgCN_P-e3ptaKo8gE"></script>
 </head>
 <body>
-
+    <div id="top-container">
+        <table><tbody><tr id="list-container"></tr></tbody></table>
+    </div>
+    <div id="image-container">
+        <img id="image-display" alt=""/>
+    </div>
 </body>
 </html>
