@@ -49,7 +49,7 @@
         
         (function () {
 
-            var feed, imageInfos = [];
+            var feed, windowWidth, imageInfos = [];
 
             initFeed = function (data) {
                 feed = data.feed;
@@ -58,18 +58,24 @@
             function onResize() {
                 $("#image-display")
                         .attr("height", window.innerHeight - 140);
+                windowWidth = $(window).width();
             }
 
             function onScroll() {
                 var scrollLeft = $(window).scrollLeft();
-                var width = $(window).width();
 
-                _.each(imageInfos, function (value, index) {
-                    var ratio = (value.pos - scrollLeft) / width;
+                for (var i = 0; i < imageInfos.length; i++) {
+                    var item = imageInfos[i];
+                    var ratio = (item.pos - scrollLeft) / windowWidth;
                     ratio = Math.min(ratio, 1.0);
                     ratio = Math.max(ratio, 0.0);
-                    value.img.css("opacity", 1.0 - Math.abs(ratio - 0.5) * 2.0);
-                });
+
+                    var transform = "rotate(" + Math.floor(90*(1.0-ratio)) + "deg)";
+                    //item.img.css("-moz-transform", transform);
+                    //item.img.css("-webkit-transform", transform);
+                    //item.img.css("transform", transform);
+                    //item.img.css("opacity", 1.0 - Math.abs(ratio - 0.5) * 2.0);
+                }
             }
 
             function calculateDimensions() {
@@ -77,6 +83,7 @@
                     var left = $(value.img).offset().left;
                     imageInfos[index].pos = left + $(value.img).width()/2;
                 });
+                onScroll();
             }
 
             $(function () {
