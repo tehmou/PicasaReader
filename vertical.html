@@ -37,88 +37,46 @@
     <script type="text/javascript" src="lib/less-1.0.41.min.js"></script>
     <script type="text/javascript" src="lib/underscore.js"></script>
     <script type="text/javascript" src="lib/backbone.js"></script>
+    <script type="text/javascript" src="lib/RequestAnimationFrame.js"></script>
 
+    <script type="text/javascript" src="js/list.js"></script>
+    <script type="text/javascript" src="js/animotor.js"></script>
     <script type="text/javascript">
 
         var initFeed;
 
         (function () {
 
-            var defaultTransformation = function () {
-                var transform = "scale(" + (0.8 + 0.2*this.ratio) + ")";
-                this.img.css("-moz-transform", transform);
-                this.img.css("-webkit-transform", transform);
-                this.img.css("transform", transform);
-            };
-
-            var calculatePositionVertical = function () {
-                var top = $(this.img).offset().top;
-                this.pos = top + $(this.img).height()/2;
-            };
-
-            var createListItemEl = function () {
-                this.el = $('<div></div>');
-                this.img = $('<img alt="" src="' + this.dataEntry["media$group"]["media$thumbnail"][1].url + '"/>');
-                $(this.el).append(this.img);
-            };
-
-            var listItem = {
-                refresh: defaultTransformation,
-                calculatePosition: calculatePositionVertical,
-                init: createListItemEl
-            };
-
-            var feed, windowHeight, imageInfos = [];
+            var feed, animotor;
 
             initFeed = function (data) {
-                console.log(data);
                 feed = data.feed;
             };
 
-            function onResize() {
-                $("#image-display")
-                        .attr("width", window.innerWidth - 190);
-                windowHeight = $(window).height();
-            }
-
-            function calculateRatios(event) {
-                var spread = windowHeight;
-                var focusPos = event.pageY;
-
-                _.each(imageInfos, function (item) {
-                    var ratio = 1.0 - (Math.abs(item.pos - focusPos) / spread);
-                    ratio = Math.min(ratio, 1.0);
-                    ratio = Math.max(ratio, 0.0);
-                    item.ratio = ratio;
-                    item.refresh();
-                });
-            }
-
-            function calculateDimensions() {
-                _.each(imageInfos, function (value) {
-                    value.calculatePosition();
-                });
-                calculateRatios();
-            }
-
             $(function () {
+
+                function onResize() {
+                    $("#image-display").attr("width", window.innerWidth - 190);
+                    animotor.onResize();
+                }
+
+                animotor = _.extend({ items: [] }, animotorObject);
+                _.bind(function () { _.bindAll(this); }, animotor)();
+
                 _.each(feed.entry, function (entry) {
-                    var item = _.extend({ dataEntry: entry }, listItem);
+                    var item = _.extend({ dataEntry: entry }, listItemObject);
                     item.init();
                     $("#list-container").append(item.el);
                     $(item.el).click(function () {
                         $("#image-display").attr("src", entry.content.src);
                     });
-                    $("img", item.el)[0].onload = calculateDimensions;
-                    imageInfos[imageInfos.length] = item;
+                    $("img", item.el)[0].onload = animotor.calculateDimensions;
+                    animotor.items.push(item);
                 });
 
                 $(window).resize(onResize);
-
                 onResize();
-
-                $("#list-container").mousemove(calculateRatios);
-
+                $("#list-container").mousemove(animotor.calculateRatios);
                 $($("#list-container").children()[0]).trigger("click");
             });
 
