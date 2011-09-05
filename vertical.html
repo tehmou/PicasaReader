@@ -21,7 +21,6 @@
 
         #list-container img {
             display: block;
-            width: 100px;
             margin-bottom: 5px;
         }
 
@@ -46,11 +45,10 @@
         (function () {
 
             var defaultTransformation = function () {
-                //var transform = "rotate(" + Math.floor(90*(0.5-ratio)) + "deg)";
-                //item.img.css("-moz-transform", transform);
-                //item.img.css("-webkit-transform", transform);
-                //item.img.css("transform", transform);
-                this.img.css("opacity", 1.0 - Math.abs(this.ratio - 0.5) * 2.0);
+                var transform = "scale(" + (0.8 + 0.2*this.ratio) + ")";
+                this.img.css("-moz-transform", transform);
+                this.img.css("-webkit-transform", transform);
+                this.img.css("transform", transform);
             };
 
             var calculatePositionVertical = function () {
@@ -79,29 +77,28 @@
 
             function onResize() {
                 $("#image-display")
-                        .attr("height", window.innerHeight - 20);
+                        .attr("width", window.innerWidth - 190);
                 windowHeight = $(window).height();
             }
 
-            function onScroll() {
-                var scrollPos = $(window).scrollTop();
-                var scrollArea = windowHeight;
+            function calculateRatios(event) {
+                var spread = windowHeight;
+                var focusPos = event.pageY;
 
-                for (var i = 0; i < imageInfos.length; i++) {
-                    var item = imageInfos[i];
-                    var ratio = (item.pos - scrollPos) / scrollArea;
+                _.each(imageInfos, function (item) {
+                    var ratio = 1.0 - (Math.abs(item.pos - focusPos) / spread);
                     ratio = Math.min(ratio, 1.0);
                     ratio = Math.max(ratio, 0.0);
                     item.ratio = ratio;
                     item.refresh();
-                }
+                });
             }
 
             function calculateDimensions() {
                 _.each(imageInfos, function (value) {
                     value.calculatePosition();
                 });
-                onScroll();
+                calculateRatios();
             }
 
             $(function () {
@@ -116,12 +113,11 @@
                     imageInfos[imageInfos.length] = item;
                 });
 
-                $(window)
-                        .scroll(onScroll)
-                        .resize(onResize);
+                $(window).resize(onResize);
 
                 onResize();
-                onScroll();
+
+                $("#list-container").mousemove(calculateRatios);
 
                 $($("#list-container").children()[0]).trigger("click");
             });
