@@ -32,10 +32,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vertical.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="vertical.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vertical.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="31" selection-start="273" selection-end="273" vertical-scroll-proportion="0.22110553">
+            <state line="62" column="17" selection-start="1729" selection-end="1729" vertical-scroll-proportion="-0.5316456">
               <folding />
             </state>
           </provider>
@@ -59,10 +59,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="listitem.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="listitem.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/listitem.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="42" selection-start="223" selection-end="223" vertical-scroll-proportion="-1.1636363">
+            <state line="35" column="67" selection-start="1200" selection-end="1200" vertical-scroll-proportion="0.71608835">
               <folding />
             </state>
           </provider>
@@ -90,8 +90,8 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/list.js" />
         <option value="$PROJECT_DIR$/js/animotor.js" />
-        <option value="$PROJECT_DIR$/js/listitem.js" />
         <option value="$PROJECT_DIR$/vertical.html" />
+        <option value="$PROJECT_DIR$/js/listitem.js" />
       </list>
     </option>
   </component>
@@ -284,9 +284,11 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/RequestAnimationFrame.js">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="13" column="9" selection-start="366" selection-end="366" vertical-scroll-proportion="-6.875">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/animotor.js">
@@ -296,23 +298,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/vertical.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="9" selection-start="366" selection-end="366" vertical-scroll-proportion="-6.875">
+        <state line="62" column="17" selection-start="1729" selection-end="1729" vertical-scroll-proportion="-0.5316456">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/RequestAnimationFrame.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/listitem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="42" selection-start="223" selection-end="223" vertical-scroll-proportion="-1.1636363">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vertical.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="31" selection-start="273" selection-end="273" vertical-scroll-proportion="0.22110553">
+        <state line="35" column="67" selection-start="1200" selection-end="1200" vertical-scroll-proportion="0.71608835">
           <folding />
         </state>
       </provider>
