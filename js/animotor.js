@@ -4,7 +4,7 @@ var animotorObject = {
     },
 
     calculateRatios: function(event) {
-        this.spread = windowHeight;
+        this.spread = windowHeight*1.1;
         this.focusPos = $(window).scrollTop() + windowHeight/2;
         this.calculate();
     },
@@ -17,10 +17,10 @@ var animotorObject = {
             ratio *= 2.0;
             ratio = Math.min(ratio, 1.0);
             ratio = Math.max(ratio, 0.0);
-            ratio = Math.sin(ratio * Math.PI / 2);
+            ratio = Math.abs(Math.cos((1.0 - ratio)*Math.PI/2));
             item.ratio = ratio;
             item.refresh();
-            pos += item.elHeight / 2.0 + item.elMarginBottom;
+            pos += item.elHeight / 2.0 + item.elMarginBottom + 7.0; // 2.0 for border compensation
         }, this));
     }
 };

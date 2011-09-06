@@ -14,6 +14,7 @@ var listItemObject;
 
         this.img.width(this.elWidth);
         this.img.height(this.elHeight);
+        this.img.css("opacity", r);
 
         //var transform = "scale(" + (0.8 + 0.2*this.ratio) + ")";
         /*var transform = "scale(1.0," + (0.4 + 0.6*this.ratio) + ")";
