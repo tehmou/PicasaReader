@@ -3,7 +3,7 @@ var animotorObject = {
         windowHeight = $(window).height();
     },
 
-    calculateRatios: function(event) {
+    refresh: function(event) {
         this.spread = windowHeight*1.1;
         this.focusPos = $(window).scrollTop() + windowHeight/2;
         this.calculate();
@@ -20,8 +20,6 @@ var animotorObject = {
             ratio = Math.abs(Math.cos((1.0 - ratio)*Math.PI/2));
             item.ratio = ratio;
             item.refresh();
-
-            console.log(item.elMarginBottom);
             pos += item.elHeight / 2.0 + item.elMarginBottom + 2.0; // 2.0 for border compensation
         }, this));
     }

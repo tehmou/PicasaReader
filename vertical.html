@@ -48,13 +48,14 @@
 
     <script type="text/javascript" src="js/listitem.js"></script>
     <script type="text/javascript" src="js/animotor.js"></script>
+    <script type="text/javascript" src="js/filmlist.js"></script>
     <script type="text/javascript">
 
         var initFeed;
 
         (function () {
 
-            var feed, animotor;
+            var feed, filmlist;
 
             initFeed = function (data) {
                 feed = data.feed;
@@ -62,37 +63,21 @@
 
             $(function () {
 
+                filmlist = _.extend({}, animotorObject, filmListObject,
+                {
+                    listItemObject: listItemObject,
+                    entries: feed.entry,
+                    el: $("#list-container")
+                });
+
+                filmlist.init();
+                
                 function onResize() {
                     $("#image-display").attr("width", window.innerWidth - 190);
-                    animotor.onResize();
+                    filmlist.onResize();
                 }
 
-                function createFiller() {
-                    var item = _.extend({}, listItemObject);
-                    item.init();
-                    $("#list-container").append(item.el);
-                    animotor.items.push(item);
-                }
-
-                animotor = _.extend({ items: [] }, animotorObject);
-                _.bind(function () { _.bindAll(this); }, animotor)();
-
-                createFiller();
-                createFiller();
-                _.each(feed.entry, function (entry) {
-                    var item = _.extend({ dataEntry: entry }, listItemObject);
-                    item.init();
-                    $("#list-container").append(item.el);
-                    $(item.el).click(function () {
-                        $("#image-display").attr("src", entry.content.src);
-                    });
-                    item.onload = function () { animotor.calculateRatios(); };
-                    animotor.items.push(item);
-                });
-                createFiller();
-                createFiller();
-
-                $(window).resize(onResize).scroll(animotor.calculateRatios);
+                $(window).resize(onResize).scroll(filmlist.refresh);
                 onResize();
                 
                 $($("#list-container").children()[2]).trigger("click");
