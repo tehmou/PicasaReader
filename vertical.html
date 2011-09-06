@@ -17,11 +17,14 @@
             position: absolute;
             margin-top: 8px;
             right: 8px;
+            padding-top: 200px;
+            padding-bottom: 200px;
         }
 
         #list-container img {
             display: block;
             margin-bottom: 5px;
+            border: 1px solid black;
         }
 
         #image-display {
@@ -39,7 +42,7 @@
     <script type="text/javascript" src="lib/backbone.js"></script>
     <script type="text/javascript" src="lib/RequestAnimationFrame.js"></script>
 
-    <script type="text/javascript" src="js/list.js"></script>
+    <script type="text/javascript" src="js/listitem.js"></script>
     <script type="text/javascript" src="js/animotor.js"></script>
     <script type="text/javascript">
 
@@ -70,13 +73,13 @@
                     $(item.el).click(function () {
                         $("#image-display").attr("src", entry.content.src);
                     });
-                    $("img", item.el)[0].onload = animotor.calculateDimensions;
+                    item.el[0].onload = animotor.calculateDimensions;
                     animotor.items.push(item);
                 });
 
-                $(window).resize(onResize);
+                $(window).resize(onResize).scroll(animotor.calculateRatios);
                 onResize();
-                $("#list-container").mousemove(animotor.calculateRatios);
+                //$("#list-container").mousemove(animotor.calculateRatios);
                 $($("#list-container").children()[0]).trigger("click");
             });
 
