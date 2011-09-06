@@ -18,7 +18,7 @@
             margin-top: 8px;
             right: 8px;
             padding-top: 200px;
-            padding-bottom: 200px;
+            height: 1000px;
         }
 
         #list-container img {
@@ -73,13 +73,13 @@
                     $(item.el).click(function () {
                         $("#image-display").attr("src", entry.content.src);
                     });
-                    item.el[0].onload = animotor.calculateDimensions;
+                    item.onload = animotor.calculateRatios;
                     animotor.items.push(item);
                 });
 
                 $(window).resize(onResize).scroll(animotor.calculateRatios);
                 onResize();
-                //$("#list-container").mousemove(animotor.calculateRatios);
+                
                 $($("#list-container").children()[0]).trigger("click");
             });
 
