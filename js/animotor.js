@@ -10,7 +10,7 @@ var animotorObject = {
     },
 
     calculate: function () {
-        var pos = 0;
+        var pos = this.items[0].el.offset().top;
         _.each(this.items, _.bind(function (item) {
             pos += item.elHeight / 2.0;
             var ratio = 1.0 - (Math.abs(pos - this.focusPos) / this.spread)*2;

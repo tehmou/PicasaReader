@@ -17,8 +17,7 @@
             position: absolute;
             margin-top: 8px;
             right: 8px;
-            padding-top: 200px;
-            height: 1000px;
+            padding-bottom: 8px;
         }
 
         #list-container img {
@@ -63,9 +62,26 @@
                     animotor.onResize();
                 }
 
+                function calculateListHeight() {
+                    //var total = 0;
+                    //_.each(animotor.items, function (item) {
+                    //    total += item.elHeight + item.elMarginBottom;
+                    //});
+                    //$("#list-container").css("height", total + 80);
+                }
+
+                function createFiller() {
+                    var item = _.extend({}, listItemObject);
+                    item.init();
+                    $("#list-container").append(item.el);
+                    animotor.items.push(item);
+                }
+
                 animotor = _.extend({ items: [] }, animotorObject);
                 _.bind(function () { _.bindAll(this); }, animotor)();
 
+                createFiller();
+                createFiller();
                 _.each(feed.entry, function (entry) {
                     var item = _.extend({ dataEntry: entry }, listItemObject);
                     item.init();
@@ -73,14 +89,16 @@
                     $(item.el).click(function () {
                         $("#image-display").attr("src", entry.content.src);
                     });
-                    item.onload = animotor.calculateRatios;
+                    item.onload = function () { animotor.calculateRatios(); calculateListHeight(); };
                     animotor.items.push(item);
                 });
+                createFiller();
+                createFiller();
 
                 $(window).resize(onResize).scroll(animotor.calculateRatios);
                 onResize();
                 
-                $($("#list-container").children()[0]).trigger("click");
+                $($("#list-container").children()[2]).trigger("click");
             });
 
         })();

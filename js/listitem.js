@@ -12,8 +12,8 @@ var listItemObject;
         this.elWidth = this.originalWidth;
         this.elHeight = this.originalHeight * r;
 
-        this.el.width(this.elWidth);
-        this.el.height(this.elHeight);
+        this.img.width(this.elWidth);
+        this.img.height(this.elHeight);
 
         //var transform = "scale(" + (0.8 + 0.2*this.ratio) + ")";
         /*var transform = "scale(1.0," + (0.4 + 0.6*this.ratio) + ")";
@@ -23,8 +23,15 @@ var listItemObject;
     };
 
     var createListItemEl = function () {
-        this.el = $('<img alt="" src="' + this.dataEntry["media$group"]["media$thumbnail"][1].url + '"/>');
-        this.el[0].onload = _.bind(function () {
+        this.el = $('<div></div>');
+        if (this.dataEntry) {
+            this.img = $('<img alt="" src="' + this.dataEntry["media$group"]["media$thumbnail"][1].url + '"/>');
+        } else {
+            this.img = $('<img alt="" src="IMG_2273_thumb.JPG"/>');
+            this.img.css("opacity", 0.3);
+        }
+
+        this.img[0].onload = _.bind(function () {
             this.originalWidth = this.elWidth = parseInt(this.el.width());
             this.originalHeight = this.elHeight = parseInt(this.el.height());
             this.elMarginBottom = parseInt(this.el.css("marginBottom").replace("px", ""));
@@ -33,6 +40,7 @@ var listItemObject;
             }
             this.loaded = true;
         }, this);
+        this.el.append(this.img);
     };
 
     listItemObject = {
