@@ -7,14 +7,15 @@ var listItemObject;
             return;
         }
 
-        var r = 0.4 + 0.6*this.ratio;
+        var r1 = 0.4 + 0.6*this.ratio;
+        var r2 = 0.2 + 0.8*this.ratio;
 
         this.elWidth = this.originalWidth;
-        this.elHeight = Math.floor(this.originalHeight * r);
+        this.elHeight = Math.floor(this.originalHeight * r1);
 
         this.img.width(this.elWidth);
         this.img.height(this.elHeight);
-        this.img.css("opacity", r);
+        this.img.css("opacity", r1);
 
         //var transform = "scale(" + (0.8 + 0.2*this.ratio) + ")";
         /*var transform = "scale(1.0," + (0.4 + 0.6*this.ratio) + ")";
@@ -33,6 +34,7 @@ var listItemObject;
         }
 
         this.img[0].onload = _.bind(function () {
+            this.img.width(144);
             this.originalWidth = this.elWidth = parseInt(this.img.width());
             this.originalHeight = this.elHeight = parseInt(this.img.height());
             this.elMarginBottom = parseInt(this.img.css("marginBottom").replace("px", ""));
