@@ -20,7 +20,9 @@ var animotorObject = {
             ratio = Math.abs(Math.cos((1.0 - ratio)*Math.PI/2));
             item.ratio = ratio;
             item.refresh();
-            pos += item.elHeight / 2.0 + item.elMarginBottom + 7.0; // 2.0 for border compensation
+
+            console.log(item.elMarginBottom);
+            pos += item.elHeight / 2.0 + item.elMarginBottom + 2.0; // 2.0 for border compensation
         }, this));
     }
 };

@@ -10,7 +10,7 @@ var listItemObject;
         var r = 0.4 + 0.6*this.ratio;
 
         this.elWidth = this.originalWidth;
-        this.elHeight = this.originalHeight * r;
+        this.elHeight = Math.floor(this.originalHeight * r);
 
         this.img.width(this.elWidth);
         this.img.height(this.elHeight);
@@ -35,7 +35,7 @@ var listItemObject;
         this.img[0].onload = _.bind(function () {
             this.originalWidth = this.elWidth = parseInt(this.img.width());
             this.originalHeight = this.elHeight = parseInt(this.img.height());
-            this.elMarginBottom = parseInt(this.el.css("marginBottom").replace("px", ""));
+            this.elMarginBottom = parseInt(this.img.css("marginBottom").replace("px", ""));
             if (this.onload) {
                 this.onload();
             }
