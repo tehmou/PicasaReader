@@ -1,5 +1,5 @@
 var animotorObject = {
-      onResize: function() {
+    onResize: function() {
         windowHeight = $(window).height();
     },
 

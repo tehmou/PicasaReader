@@ -29,8 +29,8 @@ var listItemObject;
         if (this.dataEntry) {
             this.img = $('<img alt="" src="' + this.dataEntry["media$group"]["media$thumbnail"][1].url + '"/>');
         } else {
-            this.img = $('<img alt="" src="IMG_2273_thumb.JPG"/>');
-            this.img.css("opacity", 0.3);
+            this.img = $('<img alt="" src="spacer.gif" width="144" height="96"/>');
+            this.img.css("background", "#1a1a1a").css("border-color", "black");
         }
 
         this.img[0].onload = _.bind(function () {

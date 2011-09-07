@@ -35,7 +35,7 @@
       <file leaf-file-name="vertical.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vertical.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="44" selection-start="1954" selection-end="1954" vertical-scroll-proportion="-3.949367">
+            <state line="89" column="0" selection-start="2437" selection-end="2437" vertical-scroll-proportion="-5.075949">
               <folding />
             </state>
           </provider>
@@ -44,16 +44,16 @@
       <file leaf-file-name="filmlist.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/filmlist.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="36" selection-start="463" selection-end="463" vertical-scroll-proportion="0.0">
+            <state line="10" column="0" selection-start="190" selection-end="190" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="animotor.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="animotor.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/animotor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="0" selection-start="756" selection-end="756" vertical-scroll-proportion="0.5205047">
+            <state line="16" column="12" selection-start="531" selection-end="531" vertical-scroll-proportion="-4.3636365">
               <folding />
             </state>
           </provider>
@@ -68,10 +68,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="listitem.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="listitem.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/listitem.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="52" selection-start="683" selection-end="683" vertical-scroll-proportion="-2.4545455">
+            <state line="34" column="0" selection-start="1150" selection-end="1150" vertical-scroll-proportion="0.2913386">
               <folding />
             </state>
           </provider>
@@ -89,10 +89,10 @@
       <list>
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/list.js" />
-        <option value="$PROJECT_DIR$/js/listitem.js" />
-        <option value="$PROJECT_DIR$/vertical.html" />
         <option value="$PROJECT_DIR$/js/filmlist.js" />
         <option value="$PROJECT_DIR$/js/animotor.js" />
+        <option value="$PROJECT_DIR$/vertical.html" />
+        <option value="$PROJECT_DIR$/js/listitem.js" />
       </list>
     </option>
   </component>
@@ -201,7 +201,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="22" y="51" width="1853" height="811" extended-state="0" />
+    <frame x="0" y="22" width="1440" height="825" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -209,7 +209,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32973558" sideWeight="0.0" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.42430556" sideWeight="0.0" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -297,30 +297,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/listitem.js">
+    <entry file="file://$PROJECT_DIR$/js/animotor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="52" selection-start="683" selection-end="683" vertical-scroll-proportion="-2.4545455">
+        <state line="16" column="12" selection-start="531" selection-end="531" vertical-scroll-proportion="-4.3636365">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vertical.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="44" selection-start="1954" selection-end="1954" vertical-scroll-proportion="-3.949367">
+        <state line="89" column="0" selection-start="2437" selection-end="2437" vertical-scroll-proportion="-5.075949">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/filmlist.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="36" selection-start="463" selection-end="463" vertical-scroll-proportion="0.0">
+        <state line="10" column="0" selection-start="190" selection-end="190" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/animotor.js">
+    <entry file="file://$PROJECT_DIR$/js/listitem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="756" selection-end="756" vertical-scroll-proportion="0.5205047">
+        <state line="34" column="0" selection-start="1150" selection-end="1150" vertical-scroll-proportion="0.2913386">
           <folding />
         </state>
       </provider>
