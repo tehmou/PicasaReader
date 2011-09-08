@@ -31,11 +31,19 @@
             border-color: #fff;
         }
 
-        #image-display {
+        #image-wrapper {
             position: fixed;
-            border: 1px solid #eee;
             top: 8px;
+            bottom: 8px;
             left: 8px;
+            right: 180px;
+            text-align: center;
+        }
+
+        #image-display {
+            border: 1px solid #eee;
+            max-height: 100%;
+            max-width: 100%;
         }
 
     </style>
@@ -73,7 +81,9 @@
                 filmlist.init();
                 
                 function onResize() {
-                    $("#image-display").attr("width", window.innerWidth - 190);
+
+                    //$("#image-display")
+                    //        .attr("width", window.innerWidth - 190);
                     filmlist.onResize();
                 }
 
@@ -87,11 +97,13 @@
 
 
     </script>
-    <script type="text/javascript" src="https://picasaweb.google.com/data/feed/base/user/101239827031429117300/albumid/5633001789628058321?alt=json-in-script&callback=initFeed&kind=photo&authkey=Gv1sRgCLbO9sGd-vyWjAE"></script>
-    <!--<script type="text/javascript" src="https://picasaweb.google.com/data/feed/base/user/101239827031429117300/albumid/5648146613498236001?alt=json-in-script&callback=initFeed&kind=photo&authkey=Gv1sRgCNGsuZv7wvTvbw"></script>-->
+    <!--<script type="text/javascript" src="https://picasaweb.google.com/data/feed/base/user/101239827031429117300/albumid/5633001789628058321?alt=json-in-script&callback=initFeed&kind=photo&authkey=Gv1sRgCLbO9sGd-vyWjAE"></script>-->
+    <script type="text/javascript" src="https://picasaweb.google.com/data/feed/base/user/101239827031429117300/albumid/5648146613498236001?alt=json-in-script&callback=initFeed&kind=photo&authkey=Gv1sRgCNGsuZv7wvTvbw"></script>
 </head>
 <body>
-    <img id="image-display" alt=""/>
+    <div id="image-wrapper">
+        <img id="image-display" alt=""/>
+    </div>
     <div id="list-container"></div>
 </body>
 </html>
