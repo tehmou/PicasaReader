@@ -7,33 +7,43 @@
 
         body {
             overflow: auto;
-            overflow-y: hidden;
-            -ms-overflow-y: hidden;
+            overflow-x: hidden;
+            -ms-overflow-x: hidden;
             margin: 0;
             padding: 0;
+            background: #000;
         }
 
-        #top-container {
-            margin-left: 5px;
+        #list-container {
+            position: absolute;
+            margin-top: 8px;
+            right: 8px;
+            padding-bottom: 12px;
         }
 
         #list-container img {
-            display: inline;
-            height: 100px;
-            margin: 5px 5px 0 0;
+            display: block;
+            margin-bottom: 5px;
+            border: 1px solid #888;
         }
 
-        #image-container {
+        #list-container img:hover {
+            border-color: #fff;
+        }
+
+        #image-wrapper {
             position: fixed;
-            top: 113px;
+            top: 8px;
             bottom: 8px;
             left: 8px;
-            right: 8px;
+            right: 180px;
             text-align: center;
         }
 
         #image-display {
-            border: 1px solid black;
+            border: 1px solid #eee;
+            max-height: 100%;
+            max-width: 100%;
         }
 
     </style>
@@ -42,93 +52,58 @@
     <script type="text/javascript" src="lib/less-1.0.41.min.js"></script>
     <script type="text/javascript" src="lib/underscore.js"></script>
     <script type="text/javascript" src="lib/backbone.js"></script>
+    <script type="text/javascript" src="lib/RequestAnimationFrame.js"></script>
 
+    <script type="text/javascript" src="js/listitem.js"></script>
+    <script type="text/javascript" src="js/animotor.js"></script>
+    <script type="text/javascript" src="js/filmlist.js"></script>
     <script type="text/javascript">
 
         var initFeed;
-        
+
         (function () {
 
-            var feed, windowWidth, imageInfos = [];
+            var feed, filmlist;
 
             initFeed = function (data) {
-                console.log(data);
                 feed = data.feed;
             };
 
-            function onResize() {
-                $("#image-display")
-                        .attr("height", window.innerHeight - 140);
-                windowWidth = $(window).width();
-            }
-
-            function onScroll() {
-                var scrollLeft = $(window).scrollLeft();
-
-                for (var i = 0; i < imageInfos.length; i++) {
-                    var item = imageInfos[i];
-                    var ratio = (item.pos - scrollLeft) / windowWidth;
-                    ratio = Math.min(ratio, 1.0);
-                    ratio = Math.max(ratio, 0.0);
-
-                    var transform = "rotate(" + Math.floor(90*(0.5-ratio)) + "deg)";
-                    //item.img.css("-moz-transform", transform);
-                    //item.img.css("-webkit-transform", transform);
-                    //item.img.css("transform", transform);
-                    item.img.css("opacity", 1.0 - Math.abs(ratio - 0.5) * 2.0);
-                }
-            }
-
-            function calculateDimensions() {
-                _.each(imageInfos, function (value, index) {
-                    var left = $(value.img).offset().left;
-                    imageInfos[index].pos = left + $(value.img).width()/2;
-                });
-                onScroll();
-            }
-
             $(function () {
-                for (var i = 0; i < 4; i++) {
-                    _.each(feed.entry, function (entry) {
-                        var elem = $('<td></td>');
-                        var img = $('<img alt="" src="' + entry["media$group"]["media$thumbnail"][1].url + '"/>');
-                        $(elem).append(img);
-                        $("#list-container").append(elem);
-                        elem.click(function () {
-                            $("#image-display").attr("src", entry.content.src);
-                        });
-                        img[0].onload = calculateDimensions;
 
-                        imageInfos[imageInfos.length] = {
-                            src: entry.content.src,
-                            el: elem,
-                            img: img
-                        };
-                    });
+                filmlist = _.extend({}, animotorObject, filmListObject,
+                {
+                    listItemObject: listItemObject,
+                    entries: feed.entry,
+                    el: $("#list-container")
+                });
+
+                filmlist.init();
+                
+                function onResize() {
+
+                    //$("#image-display")
+                    //        .attr("width", window.innerWidth - 190);
+                    filmlist.onResize();
                 }
 
-                $(window)
-                        .scroll(onScroll)
-                        .resize(onResize);
-
+                $(window).resize(onResize).scroll(filmlist.refresh);
                 onResize();
-                onScroll();
-
-                $($("#list-container").children()[0]).trigger("click");
+                
+                $($("#list-container").children()[2]).trigger("click");
             });
 
         })();
 
 
     </script>
-    <script type="text/javascript" src="https://picasaweb.google.com/data/feed/base/user/101239827031429117300/albumid/5641510119136361361?alt=json-in-script&callback=initFeed&kind=photo&authkey=Gv1sRgCN_P-e3ptaKo8gE"></script>
+    <!--<script type="text/javascript" src="https://picasaweb.google.com/data/feed/base/user/101239827031429117300/albumid/5633001789628058321?alt=json-in-script&callback=initFeed&kind=photo&authkey=Gv1sRgCLbO9sGd-vyWjAE"></script>-->
+    <script type="text/javascript" src="https://picasaweb.google.com/data/feed/base/user/101239827031429117300/albumid/5648146613498236001?alt=json-in-script&callback=initFeed&kind=photo&authkey=Gv1sRgCNGsuZv7wvTvbw"></script>
 </head>
 <body>
-    <div id="image-container">
+    <div id="image-wrapper">
         <img id="image-display" alt=""/>
     </div>
-    <div id="top-container">
-        <table><tbody><tr id="list-container"></tr></tbody></table>
-    </div>
+    <div id="list-container"></div>
 </body>
 </html>
