@@ -14,12 +14,12 @@ var filmListObject = {
         this.createFiller();
         this.createFiller();
 
-        _.each(this.entries, _.bind(function (entry) {
-            var item = _.extend({ dataEntry: entry }, listItemObject);
+        this.model.each(_.bind(function (entry) {
+            var item = _.extend({ model: entry }, listItemObject);
             item.init();
             this.el.append(item.el);
             $(item.el).click(function () {
-                $("#image-display").attr("src", entry.content.src);
+                $("#image-display").attr("src", entry.get("imageUrl"));
             });
             item.onload = function () { this.refresh(); };
             this.items.push(item);
@@ -28,6 +28,8 @@ var filmListObject = {
 
         this.createFiller();
         this.createFiller();
+
+        return this;
     },
 
     createFiller: function() {

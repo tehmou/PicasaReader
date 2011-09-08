@@ -26,8 +26,8 @@ var listItemObject;
 
     var createListItemEl = function () {
         this.el = $('<div></div>');
-        if (this.dataEntry) {
-            this.img = $('<img alt="" src="' + this.dataEntry["media$group"]["media$thumbnail"][1].url + '"/>');
+        if (this.model) {
+            this.img = $('<img alt="" src="' + this.model.get("thumbnailUrl") + '"/>');
         } else {
             this.img = $('<img alt="" src="spacer.gif" width="144" height="96"/>');
             this.img.css("background", "#1a1a1a").css("border-color", "black");

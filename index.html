@@ -66,30 +66,31 @@
             var feed, filmlist;
 
             initFeed = function (data) {
-                feed = data.feed;
+                feed = [];
+                _.each(data.feed.entry, function (entry) {
+                    feed.push({
+                        thumbnailUrl: entry["media$group"]["media$thumbnail"][1].url,
+                        imageUrl: entry.content.src
+                    })
+                });
             };
 
             $(function () {
 
+                var entries = new Backbone.Collection(feed);
                 filmlist = _.extend({}, animotorObject, filmListObject,
                 {
                     listItemObject: listItemObject,
-                    entries: feed.entry,
+                    model: entries,
                     el: $("#list-container")
-                });
+                }).init();
 
-                filmlist.init();
-                
                 function onResize() {
-
-                    //$("#image-display")
-                    //        .attr("width", window.innerWidth - 190);
                     filmlist.onResize();
                 }
 
-                $(window).resize(onResize).scroll(filmlist.refresh);
                 onResize();
-                
+                $(window).resize(onResize).scroll(filmlist.refresh);
                 $($("#list-container").children()[2]).trigger("click");
             });
 
