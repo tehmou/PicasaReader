@@ -27,22 +27,23 @@ var listItemObject;
     var createListItemEl = function () {
         this.el = $('<div></div>');
         if (this.model) {
-            this.img = $('<img alt="" src="' + this.model.get("thumbnailUrl") + '"/>');
-        } else {
-            this.img = $('<img alt="" src="spacer.gif" width="144" height="96"/>');
-            this.img.css("background", "#1a1a1a").css("border-color", "black");
+            if (this.model.get("thumbnailUrl")) {
+                this.img = $('<img alt="" src="' + this.model.get("thumbnailUrl") + '"/>');
+                this.img[0].onload = _.bind(function () {
+                    this.img.width(144);
+                    this.originalWidth = this.elWidth = parseInt(this.img.width());
+                    this.originalHeight = this.elHeight = parseInt(this.img.height());
+                    this.elMarginBottom = parseInt(this.img.css("marginBottom").replace("px", ""));
+                    if (this.onload) {
+                        this.onload();
+                    }
+                    this.loaded = true;
+                }, this);
+            } else if (this.model.get("elContent")) {
+                this.img = this.model.get("elContent");
+            }
         }
 
-        this.img[0].onload = _.bind(function () {
-            this.img.width(144);
-            this.originalWidth = this.elWidth = parseInt(this.img.width());
-            this.originalHeight = this.elHeight = parseInt(this.img.height());
-            this.elMarginBottom = parseInt(this.img.css("marginBottom").replace("px", ""));
-            if (this.onload) {
-                this.onload();
-            }
-            this.loaded = true;
-        }, this);
         this.el.append(this.img);
     };
 

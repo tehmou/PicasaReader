@@ -1,7 +1,7 @@
 var filmListObject = {
 
     listItemObject: null,
-    entries: null,
+    model: null,
 
     init: function () {
         if (!this.el) {
@@ -19,7 +19,7 @@ var filmListObject = {
             item.init();
             this.el.append(item.el);
             $(item.el).click(function () {
-                $("#image-display").attr("src", entry.get("imageUrl"));
+                entry.trigger("itemClick", entry);
             });
             item.onload = function () { this.refresh(); };
             this.items.push(item);

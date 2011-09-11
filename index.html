@@ -27,6 +27,13 @@
             border: 1px solid #888;
         }
 
+        #list-container .blank {
+            background: #1a1a1a;
+            border-color: black;
+            width: 144px;
+            height: 96px;
+        }
+
         #list-container img:hover {
             border-color: #fff;
         }
@@ -63,7 +70,7 @@
 
         (function () {
 
-            var feed, filmlist;
+            var feed, entries;
 
             initFeed = function (data) {
                 feed = [];
@@ -77,21 +84,40 @@
 
             $(function () {
 
-                var entries = new Backbone.Collection(feed);
-                filmlist = _.extend({}, animotorObject, filmListObject,
-                {
-                    listItemObject: listItemObject,
-                    model: entries,
-                    el: $("#list-container")
-                }).init();
+                createModels();
+                createList();
+                start();
 
-                function onResize() {
-                    filmlist.onResize();
+                function createModels() {
+                    entries = new Backbone.Collection(feed);
+                    entries.bind("itemClick", itemClickHandler);
+
+                    var aboutItem = new Backbone.Model({
+                        elContent: $('<div class="blank"/>')
+                    });
+                    entries.models.splice(0, 0, aboutItem);
                 }
 
-                onResize();
-                $(window).resize(onResize).scroll(filmlist.refresh);
-                $($("#list-container").children()[2]).trigger("click");
+                function createList() {
+                    var filmlist = _.extend({}, animotorObject, filmListObject,
+                    {
+                        listItemObject: listItemObject,
+                        model: entries,
+                        el: $("#list-container")
+                    }).init();
+                    filmlist.onResize();
+                    $(window)
+                            .resize(filmlist.onResize)
+                            .scroll(filmlist.refresh);
+                }
+
+                function itemClickHandler(item) {
+                    $("#image-display").attr("src", item.get("imageUrl"));
+                }
+
+                function start() {
+                    itemClickHandler(entries.at(1));
+                }
             });
 
         })();
