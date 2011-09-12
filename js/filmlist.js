@@ -16,9 +16,11 @@ var filmListObject = {
                 model: entry,
                 originalWidth: this.thumbnailWidth,
                 originalHeight: this.thumbnailHeight,
-                margin: this.thumbnailGap
+                margin: this.thumbnailGap,
+                ratio: 1.0
             });
             item.init();
+            item.refresh();
             this.el.append(item.el);
             $(item.el).click(function () {
                 entry.trigger("itemClick", entry);

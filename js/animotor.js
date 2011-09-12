@@ -4,7 +4,7 @@ var animotorObject = {
     },
 
     refresh: function(event) {
-        this.spread = windowHeight*1.1;
+        this.spread = windowHeight;
         this.focusPos = $(window).scrollTop() + windowHeight/2;
         this.calculate();
     },
@@ -12,12 +12,6 @@ var animotorObject = {
     calculate: function () {
         var pos = this.items[0].el.offset().top;
         _.each(this.items, _.bind(function (item) {
-            if (!item.hasOwnProperty("elWidth")) {
-                item.elWidth = item.originalWidth;
-            }
-            if (!item.hasOwnProperty("elHeight")) {
-                item.elHeight = item.originalHeight;
-            }
             pos += item.elHeight / 2.0;
             var ratio = 1.0 - (Math.abs(pos - this.focusPos) / this.spread)*2;
             ratio *= 2.0;

@@ -31,7 +31,9 @@
         $(function () {
             _.extend(galleryOptions, {
                 prepend: [
-                    new Backbone.Model({ elContent: $('<div><span>About</span></div>') }),
+                    new Backbone.Model({ elContent: $('<div class="blank"></div>') }),
+                    new Backbone.Model({ elContent: $('<div class="blank"></div>') })
+                    /*new Backbone.Model({ elContent: $('<div><span>About</span></div>') }),
                     new Backbone.Model({ elContent: $('<div><span>Menu</span></div>') }),
                     new Backbone.Model({ elContent: $('<div></div>') }),
                     new Backbone.Model({ elContent: $('<div></div>') }),
@@ -46,7 +48,7 @@
                     new Backbone.Model({ elContent: $('<div></div>') }),
                     new Backbone.Model({ elContent: $('<div></div>') }),
                     new Backbone.Model({ elContent: $('<div></div>') }),
-                    new Backbone.Model({ elContent: $('<div></div>') })
+                    new Backbone.Model({ elContent: $('<div></div>') })*/
 
                 ],
                 append: [
@@ -64,12 +66,12 @@
 
         function initFeed (data) {
             var feed = [];
-            /*_.each(data.feed.entry, function (entry) {
+            _.each(data.feed.entry, function (entry) {
                 feed.push({
                     thumbnailUrl: entry["media$group"]["media$thumbnail"][1].url,
                     imageUrl: entry.content.src
                 })
-            });*/
+            });
             galleryOptions.feed = feed;
         };
 
