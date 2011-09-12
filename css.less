@@ -1,0 +1,53 @@
+body {
+    font-family: "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans;
+    overflow: auto;
+    overflow-x: hidden;
+    -ms-overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background: #000;
+}
+
+#list-container {
+    position: absolute;
+    margin-top: 8px;
+    right: 8px;
+    padding-bottom: 12px;
+
+    
+    img {
+        display: block;
+        margin-bottom: 5px;
+        border: 1px solid #888;
+
+        &:hover {
+            border-color: #fff;
+        }
+    }
+
+    .blank {
+        margin-bottom: 5px;
+        background: #1a1a1a;
+        color: #777;
+        border-color: black;
+        padding-top: 10px;
+        width: 144px;
+        height: 86px;
+        text-align: center;
+    }
+}
+
+#image-wrapper {
+    position: fixed;
+    top: 8px;
+    bottom: 8px;
+    left: 8px;
+    right: 180px;
+    text-align: center;
+}
+
+#image-display {
+    border: 1px solid #eee;
+    max-height: 100%;
+    max-width: 100%;
+}
