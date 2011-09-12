@@ -12,8 +12,12 @@ var animotorObject = {
     calculate: function () {
         var pos = this.items[0].el.offset().top;
         _.each(this.items, _.bind(function (item) {
-            console.log(pos);
-            console.log(item);
+            if (!item.hasOwnProperty("elWidth")) {
+                item.elWidth = item.originalWidth;
+            }
+            if (!item.hasOwnProperty("elHeight")) {
+                item.elHeight = item.originalHeight;
+            }
             pos += item.elHeight / 2.0;
             var ratio = 1.0 - (Math.abs(pos - this.focusPos) / this.spread)*2;
             ratio *= 2.0;
@@ -22,7 +26,7 @@ var animotorObject = {
             ratio = Math.abs(Math.cos((1.0 - ratio)*Math.PI/2));
             item.ratio = ratio;
             item.refresh();
-            pos += item.elHeight / 2.0 + item.elMarginBottom + 2.0; // 2.0 for border compensation
+            pos += item.elHeight / 2.0 + item.elMarginBottom;
         }, this));
     }
 };

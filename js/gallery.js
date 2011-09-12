@@ -17,8 +17,12 @@ var createGallery = function (options) {
             elContent: $('<div><span>Menu</span></div>')
         });
         entries.models.splice(0, 0, aboutItem, menuItem);
-        entries.models.push(new Backbone.Model({ elContent: $('<div class="blank"></div>') }));
-        entries.models.push(new Backbone.Model({ elContent: $('<div class="blank"></div>') }));
+        entries.models.push(new Backbone.Model({
+            elContent: $('<div class="blank"></div>')
+        }));
+        entries.models.push(new Backbone.Model({
+            elContent: $('<div class="blank"></div>')
+        }));
     }
 
     function createList() {
@@ -28,6 +32,7 @@ var createGallery = function (options) {
             el: $("#list-container")
         }).init();
         filmlist.onResize();
+        filmlist.refresh();
         $(window)
                 .resize(filmlist.onResize)
                 .scroll(filmlist.refresh);

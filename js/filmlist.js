@@ -12,7 +12,12 @@ var filmListObject = {
         _.bindAll(this);
 
         this.model.each(_.bind(function (entry) {
-            var item = _.extend({ model: entry }, listItemObject);
+            var item = _.extend({}, listItemObject, {
+                model: entry,
+                originalWidth: 144,
+                originalHeight: 86,
+                marginBottom: 7
+            });
             item.init();
             this.el.append(item.el);
             $(item.el).click(function () {
