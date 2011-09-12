@@ -11,6 +11,7 @@
     <script type="text/javascript" src="lib/backbone.js"></script>
     <script type="text/javascript" src="lib/RequestAnimationFrame.js"></script>
 
+    <script type="text/javascript" src="js/urlvars.js"></script>
     <script type="text/javascript" src="js/listitem.js"></script>
     <script type="text/javascript" src="js/animotor.js"></script>
     <script type="text/javascript" src="js/filmlist.js"></script>
@@ -19,11 +20,17 @@
     <script type="text/javascript">
 
         var galleryOptions = {
-            orientation: "vertical"
+            orientation: "vertical",
+            css3: urlVars.hasOwnProperty("css3") ? urlVars.css3 !== "false" : true,
+            webgl: urlVars.hasOwnProperty("webgl") ? urlVars.webgl !== "false" : true
         };
 
         $(function () {
             createGallery(galleryOptions);
+
+            $("#settings-container")
+                    .append("<a href='" + baseUrl + "?css3=" + !galleryOptions.css3 + "&webgl=" + galleryOptions.webgl + "'>" + (galleryOptions.css3 ? "[x]" : "[ ]") + " css3</a>")
+                    .append("<a href='" + baseUrl + "?css3=" + galleryOptions.css3 + "&webgl=" + !galleryOptions.webgl + "'>" + (galleryOptions.webgl ? "[x]" : "[ ]") + " webgl</a>")
         });
 
         function initFeed (data) {
@@ -47,5 +54,6 @@
         <img id="image-display" alt=""/>
     </div>
     <div id="list-container"></div>
+    <div id="settings-container"></div>
 </body>
 </html>

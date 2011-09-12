@@ -23,10 +23,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="34" selection-start="964" selection-end="964" vertical-scroll-proportion="-13.125">
+            <state line="20" column="0" selection-start="963" selection-end="963" vertical-scroll-proportion="0.40184048">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urlvars.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/urlvars.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="5" selection-start="445" selection-end="445" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -41,10 +50,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="css.less" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="css.less" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="25" selection-start="657" selection-end="657" vertical-scroll-proportion="0.54426706">
+            <state line="81" column="14" selection-start="1386" selection-end="1386" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -68,15 +77,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="filmlist.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/filmlist.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="647" selection-end="647" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -90,11 +90,12 @@
         <option value="$PROJECT_DIR$/js/list.js" />
         <option value="$PROJECT_DIR$/js/animotor.js" />
         <option value="$PROJECT_DIR$/vertical.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/filmlist.js" />
         <option value="$PROJECT_DIR$/js/listitem.js" />
         <option value="$PROJECT_DIR$/js/gallery.js" />
+        <option value="$PROJECT_DIR$/js/urlvars.js" />
         <option value="$PROJECT_DIR$/css.less" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -329,13 +330,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/gallery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="30" selection-start="348" selection-end="348" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/listitem.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="0" selection-start="780" selection-end="816" vertical-scroll-proportion="0.0">
@@ -343,16 +337,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/js/gallery.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="34" selection-start="964" selection-end="964" vertical-scroll-proportion="-13.125">
+        <state line="13" column="30" selection-start="348" selection-end="348" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/urlvars.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="5" selection-start="445" selection-end="445" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="25" selection-start="657" selection-end="657" vertical-scroll-proportion="0.54426706">
+        <state line="81" column="14" selection-start="1386" selection-end="1386" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="963" selection-end="963" vertical-scroll-proportion="0.40184048">
           <folding />
         </state>
       </provider>

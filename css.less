@@ -8,6 +8,23 @@ body {
     background: #000;
 }
 
+a {
+    color: #ddd;
+    text-decoration: none;
+
+    &:visited {
+        color: #ddd;
+    }
+
+    &:active {
+        color: #fff;
+    }
+
+    &:hover {
+        color: #fff;
+    }
+}
+
 #list-container {
     position: absolute;
     margin-top: 8px;
@@ -26,14 +43,15 @@ body {
         }
 
         div {
-            background: #1a1a1a;
-            color: #777;
+            background: #999;
+            color: #222;
             padding-top: 10px;
             width: 144px;
             height: 86px;
             text-align: center;
 
             &.blank {
+                background: #1a1a1a;
                 border: none;
                 &:hover {
                     border: none;
@@ -56,4 +74,15 @@ body {
     border: 1px solid #eee;
     max-height: 100%;
     max-width: 100%;
+}
+
+#settings-container {
+    position: fixed;
+    left: 5px;
+    bottom: 24px;
+    font-size: 10px;
+
+    a {
+        display: block;
+    }
 }
