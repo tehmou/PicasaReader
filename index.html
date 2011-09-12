@@ -21,47 +21,29 @@
 
         var galleryOptions = {
             orientation: "vertical",
-            css3: urlVars.hasOwnProperty("css3") ? urlVars.css3 !== "false" : true,
-            webgl: urlVars.hasOwnProperty("webgl") ? urlVars.webgl !== "false" : true,
+            mode: urlVars.hasOwnProperty("mode") ? urlVars.mode : "webgl",
             thumbnailWidth: 144,
             thumbnailHeight: 86,
             thumbnailGap: 7
         };
 
         $(function () {
+            var filler = new Backbone.Model();
             _.extend(galleryOptions, {
+                displayEl: $("#image-display"),
                 prepend: [
-                    new Backbone.Model({ elContent: $('<div class="blank"></div>') }),
-                    new Backbone.Model({ elContent: $('<div class="blank"></div>') })
-                    /*new Backbone.Model({ elContent: $('<div><span>About</span></div>') }),
-                    new Backbone.Model({ elContent: $('<div><span>Menu</span></div>') }),
-                    new Backbone.Model({ elContent: $('<div></div>') }),
-                    new Backbone.Model({ elContent: $('<div></div>') }),
-                    new Backbone.Model({ elContent: $('<div></div>') }),
-                    new Backbone.Model({ elContent: $('<div></div>') }),
-                    new Backbone.Model({ elContent: $('<div></div>') }),
-                    new Backbone.Model({ elContent: $('<div></div>') }),
-                    new Backbone.Model({ elContent: $('<div></div>') }),
-                    new Backbone.Model({ elContent: $('<div></div>') }),
-                    new Backbone.Model({ elContent: $('<div></div>') }),
-                    new Backbone.Model({ elContent: $('<div></div>') }),
-                    new Backbone.Model({ elContent: $('<div></div>') }),
-                    new Backbone.Model({ elContent: $('<div></div>') }),
-                    new Backbone.Model({ elContent: $('<div></div>') }),
-                    new Backbone.Model({ elContent: $('<div></div>') })*/
-
+                    new Backbone.Model({ text: "About" }),
+                    new Backbone.Model({ text: "Menu" })
                 ],
-                append: [
-                    new Backbone.Model({ elContent: $('<div class="blank"></div>') }),
-                    new Backbone.Model({ elContent: $('<div class="blank"></div>') })
-                ]
+                append: [ filler, filler ]
             });
 
-            createGallery(galleryOptions);
+            createGallery(_.extend({}, galleryOptions, { el: $("#list-container"), mode: "css" }));
+            createGallery(_.extend({}, galleryOptions, { el: $("#webgl-list-container"), mode: "webgl" }));
 
             $("#settings-container")
-                    .append("<a href='" + baseUrl + "?css3=" + !galleryOptions.css3 + "&webgl=" + galleryOptions.webgl + "'>" + (galleryOptions.css3 ? "[x]" : "[ ]") + " css3</a>")
-                    .append("<a href='" + baseUrl + "?css3=" + galleryOptions.css3 + "&webgl=" + !galleryOptions.webgl + "'>" + (galleryOptions.webgl ? "[x]" : "[ ]") + " webgl</a>")
+                    .append("<a href='" + baseUrl + "?mode=css'>" + (galleryOptions.mode === "css" ? "[x]" : "[ ]") + " css</a>")
+                    .append("<a href='" + baseUrl + "'>"+ (galleryOptions.mode === "webgl" ? "[x]" : "[ ]") + " webgl</a>")
         });
 
         function initFeed (data) {
@@ -85,6 +67,7 @@
         <img id="image-display" alt=""/>
     </div>
     <div id="list-container"></div>
+    <canvas id="webgl-list-container"></canvas>
     <div id="settings-container"></div>
 </body>
 </html>

@@ -2,6 +2,8 @@ var createGallery = function (options) {
     var feed = options.feed;
     var prependModels = options.prepend;
     var appendModels = options.append;
+    var el = options.el;
+    var displayEl = options.displayEl;
     var entries;
 
     createModels();
@@ -17,13 +19,13 @@ var createGallery = function (options) {
 
     function createList() {
         var filmlist = _.extend({}, filmListObject, {
-            listItemObject: listItemObject,
-            model: entries,
-            el: $("#list-container"),
-            thumbnailWidth: options.thumbnailWidth,
-            thumbnailHeight: options.thumbnailHeight,
-            thumbnailGap: options.thumbnailGap
-        }).init();
+                listItemObject: listItemObject,
+                model: entries,
+                el: el,
+                thumbnailWidth: options.thumbnailWidth,
+                thumbnailHeight: options.thumbnailHeight,
+                thumbnailGap: options.thumbnailGap
+            }).init();
         filmlist.onResize();
         filmlist.refresh();
         $(window)
@@ -32,7 +34,7 @@ var createGallery = function (options) {
     }
 
     function itemClickHandler(item) {
-        $("#image-display").attr("src", item.get("imageUrl"));
+        displayEl.attr("src", item.get("imageUrl"));
     }
 
     function start() {

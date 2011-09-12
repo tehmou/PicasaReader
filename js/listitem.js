@@ -2,17 +2,19 @@ var listItemObject;
 
 (function () {
 
-    var scaleY = function () {
-        var r1 = 0.4 + 0.6*this.ratio;
-        var r2 = 0.2 + 0.8*this.ratio;
+    var transformations = {
+        scaleY: function () {
+            var r1 = 0.4 + 0.6*this.ratio;
+            var r2 = 0.2 + 0.8*this.ratio;
 
-        this.elWidth = this.originalWidth;
-        this.elHeight = Math.floor(this.originalHeight * r1);
+            this.elWidth = this.originalWidth;
+            this.elHeight = Math.floor(this.originalHeight * r1);
 
-        this.img
-            .width(this.elWidth)
-            .height(this.elHeight)
-            .css("opacity", r1);
+            this.img
+                .width(this.elWidth)
+                .height(this.elHeight)
+                .css("opacity", r1);
+        }
     };
 
     var createListItemEl = function () {
@@ -28,8 +30,11 @@ var listItemObject;
                     }
                     this.loaded = true;
                 }, this);
-            } else if (this.model.get("elContent")) {
-                this.img = this.model.get("elContent");
+            } else if (this.model.get("text")) {
+                this.img = $("<div><span>" + this.model.get("text") + "</span></div>");
+                this.loaded = true;
+            } else {
+                this.img = $("<div class='blank'></div>");
                 this.loaded = true;
             }
         }
@@ -41,11 +46,8 @@ var listItemObject;
         ratio: 1.0,
         originalWidth: 0, originalHeight: 0,
         elWidth: 0, elHeight: 0, margin: 0,
-        refresh: scaleY,
-        init: createListItemEl,
-        transformations: {
-            scaleY: scaleY
-        }
+        refresh: transformations.scaleY,
+        init: createListItemEl
     };
 
 })();
