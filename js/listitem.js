@@ -9,11 +9,7 @@ var listItemObject;
 
             this.elWidth = this.originalWidth;
             this.elHeight = Math.floor(this.originalHeight * r1);
-
-            this.img
-                .width(this.elWidth)
-                .height(this.elHeight)
-                .css("opacity", r1);
+            this.elOpacity = r1;
         }
     };
 
@@ -46,7 +42,15 @@ var listItemObject;
         ratio: 1.0,
         originalWidth: 0, originalHeight: 0,
         elWidth: 0, elHeight: 0, margin: 0,
-        refresh: transformations.scaleY,
+        transformation: transformations.scaleY,
+        refresh: function () {
+            this.transformation();
+            this.img
+                .width(this.elWidth)
+                .height(this.elHeight)
+                .css("opacity", this.opacity);
+
+        },
         init: createListItemEl
     };
 
