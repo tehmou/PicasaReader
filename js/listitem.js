@@ -25,8 +25,7 @@ var listItemObject;
             if (this.model.get("thumbnailUrl")) {
                 this.img = $('<img alt="" src="' + this.model.get("thumbnailUrl") + '"/>');
                 this.img[0].onload = _.bind(function () {
-                    this.img.width(144);
-                    this.originalWidth = this.img.width();
+                    this.img.width(this.originalWidth);
                     this.originalHeight = this.img.height();
                     if (this.onload) {
                         this.onload();

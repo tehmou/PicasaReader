@@ -1,5 +1,7 @@
 var createGallery = function (options) {
     var feed = options.feed;
+    var prependModels = options.prepend;
+    var appendModels = options.append;
     var entries;
 
     createModels();
@@ -9,27 +11,18 @@ var createGallery = function (options) {
     function createModels() {
         entries = new Backbone.Collection(feed);
         entries.bind("itemClick", itemClickHandler);
-
-        var aboutItem = new Backbone.Model({
-            elContent: $('<div><span>About</span></div>')
-        });
-        var menuItem = new Backbone.Model({
-            elContent: $('<div><span>Menu</span></div>')
-        });
-        entries.models.splice(0, 0, aboutItem, menuItem);
-        entries.models.push(new Backbone.Model({
-            elContent: $('<div class="blank"></div>')
-        }));
-        entries.models.push(new Backbone.Model({
-            elContent: $('<div class="blank"></div>')
-        }));
+        entries.models.splice.apply(entries.models, [0, 0].concat(prependModels));
+        entries.models.splice.apply(entries.models, [entries.models.length, 0].concat(appendModels));
     }
 
     function createList() {
         var filmlist = _.extend({}, filmListObject, animotorObject, {
             listItemObject: listItemObject,
             model: entries,
-            el: $("#list-container")
+            el: $("#list-container"),
+            thumbnailWidth: options.thumbnailWidth,
+            thumbnailHeight: options.thumbnailHeight,
+            thumbnailGap: options.thumbnailGap
         }).init();
         filmlist.onResize();
         filmlist.refresh();

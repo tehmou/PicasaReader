@@ -14,9 +14,9 @@ var filmListObject = {
         this.model.each(_.bind(function (entry) {
             var item = _.extend({}, listItemObject, {
                 model: entry,
-                originalWidth: 144,
-                originalHeight: 86,
-                marginBottom: 7
+                originalWidth: this.thumbnailWidth,
+                originalHeight: this.thumbnailHeight,
+                margin: this.thumbnailGap
             });
             item.init();
             this.el.append(item.el);

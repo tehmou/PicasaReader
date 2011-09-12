@@ -22,10 +22,39 @@
         var galleryOptions = {
             orientation: "vertical",
             css3: urlVars.hasOwnProperty("css3") ? urlVars.css3 !== "false" : true,
-            webgl: urlVars.hasOwnProperty("webgl") ? urlVars.webgl !== "false" : true
+            webgl: urlVars.hasOwnProperty("webgl") ? urlVars.webgl !== "false" : true,
+            thumbnailWidth: 144,
+            thumbnailHeight: 86,
+            thumbnailGap: 7
         };
 
         $(function () {
+            _.extend(galleryOptions, {
+                prepend: [
+                    new Backbone.Model({ elContent: $('<div><span>About</span></div>') }),
+                    new Backbone.Model({ elContent: $('<div><span>Menu</span></div>') }),
+                    new Backbone.Model({ elContent: $('<div></div>') }),
+                    new Backbone.Model({ elContent: $('<div></div>') }),
+                    new Backbone.Model({ elContent: $('<div></div>') }),
+                    new Backbone.Model({ elContent: $('<div></div>') }),
+                    new Backbone.Model({ elContent: $('<div></div>') }),
+                    new Backbone.Model({ elContent: $('<div></div>') }),
+                    new Backbone.Model({ elContent: $('<div></div>') }),
+                    new Backbone.Model({ elContent: $('<div></div>') }),
+                    new Backbone.Model({ elContent: $('<div></div>') }),
+                    new Backbone.Model({ elContent: $('<div></div>') }),
+                    new Backbone.Model({ elContent: $('<div></div>') }),
+                    new Backbone.Model({ elContent: $('<div></div>') }),
+                    new Backbone.Model({ elContent: $('<div></div>') }),
+                    new Backbone.Model({ elContent: $('<div></div>') })
+
+                ],
+                append: [
+                    new Backbone.Model({ elContent: $('<div class="blank"></div>') }),
+                    new Backbone.Model({ elContent: $('<div class="blank"></div>') })
+                ]
+            });
+
             createGallery(galleryOptions);
 
             $("#settings-container")
@@ -35,12 +64,12 @@
 
         function initFeed (data) {
             var feed = [];
-            _.each(data.feed.entry, function (entry) {
+            /*_.each(data.feed.entry, function (entry) {
                 feed.push({
                     thumbnailUrl: entry["media$group"]["media$thumbnail"][1].url,
                     imageUrl: entry.content.src
                 })
-            });
+            });*/
             galleryOptions.feed = feed;
         };
 
