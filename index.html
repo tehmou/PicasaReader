@@ -6,6 +6,7 @@
     <style type="text/css">
 
         body {
+            font-family: "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans;
             overflow: auto;
             overflow-x: hidden;
             -ms-overflow-x: hidden;
@@ -32,9 +33,10 @@
             background: #1a1a1a;
             color: #777;
             border-color: black;
+            padding-top: 10px;
             width: 144px;
-            height: 96px;
-            text-align: center;
+            height: 86px;
+            text-align: center; 
         }
 
         #list-container img:hover {
@@ -101,11 +103,9 @@
                     var menuItem = new Backbone.Model({
                         elContent: $('<div class="blank"><span>Menu</span></div>')
                     });
-                    var fillerItem = new Backbone.Model({
-                        elContent: $('<div class="blank"></div>')
-                    });
                     entries.models.splice(0, 0, aboutItem, menuItem);
-                    entries.models.push(fillerItem);
+                    entries.models.push(new Backbone.Model({ elContent: $('<div class="blank"></div>') }));
+                    entries.models.push(new Backbone.Model({ elContent: $('<div class="blank"></div>') }));
                 }
 
                 function createList() {

@@ -23,19 +23,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="21" selection-start="3026" selection-end="3026" vertical-scroll-proportion="-7.1666665">
+            <state line="22" column="9" selection-start="637" selection-end="637" vertical-scroll-proportion="0.43711656">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="horizontal.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="horizontal.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/horizontal.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="24" selection-start="783" selection-end="783" vertical-scroll-proportion="-1.4386503">
+            <state line="34" column="24" selection-start="783" selection-end="783" vertical-scroll-proportion="27.833334">
               <folding />
             </state>
           </provider>
@@ -91,8 +91,8 @@
         <option value="$PROJECT_DIR$/js/animotor.js" />
         <option value="$PROJECT_DIR$/vertical.html" />
         <option value="$PROJECT_DIR$/js/listitem.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/filmlist.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -299,13 +299,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="21" selection-start="3026" selection-end="3026" vertical-scroll-proportion="-7.1666665">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/filmlist.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="4" selection-start="955" selection-end="955" vertical-scroll-proportion="0.0">
@@ -322,7 +315,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/horizontal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="24" selection-start="783" selection-end="783" vertical-scroll-proportion="-1.4386503">
+        <state line="34" column="24" selection-start="783" selection-end="783" vertical-scroll-proportion="27.833334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="9" selection-start="637" selection-end="637" vertical-scroll-proportion="0.43711656">
           <folding />
         </state>
       </provider>
