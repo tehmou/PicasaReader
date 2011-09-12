@@ -11,10 +11,10 @@ var createGallery = function (options) {
         entries.bind("itemClick", itemClickHandler);
 
         var aboutItem = new Backbone.Model({
-            elContent: $('<div class="blank"><span>About</span></div>')
+            elContent: $('<div><span>About</span></div>')
         });
         var menuItem = new Backbone.Model({
-            elContent: $('<div class="blank"><span>Menu</span></div>')
+            elContent: $('<div><span>Menu</span></div>')
         });
         entries.models.splice(0, 0, aboutItem, menuItem);
         entries.models.push(new Backbone.Model({ elContent: $('<div class="blank"></div>') }));

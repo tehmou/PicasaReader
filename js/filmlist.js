@@ -11,9 +11,6 @@ var filmListObject = {
 
         _.bindAll(this);
 
-        this.createFiller();
-        this.createFiller();
-
         this.model.each(_.bind(function (entry) {
             var item = _.extend({ model: entry }, listItemObject);
             item.init();
@@ -25,19 +22,8 @@ var filmListObject = {
             this.items.push(item);
         }, this));
 
-
-        this.createFiller();
-        this.createFiller();
-
         return this;
     },
 
-    createFiller: function() {
-        var item = _.extend({}, listItemObject);
-        item.init();
-        $("#list-container").append(item.el);
-        this.items.push(item);
-    },
-    
     onResize: function () { }
 };
