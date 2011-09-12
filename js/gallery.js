@@ -16,7 +16,7 @@ var createGallery = function (options) {
     }
 
     function createList() {
-        var filmlist = _.extend({}, filmListObject, animotorObject, {
+        var filmlist = _.extend({}, filmListObject, {
             listItemObject: listItemObject,
             model: entries,
             el: $("#list-container"),

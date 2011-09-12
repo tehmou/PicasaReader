@@ -16,8 +16,7 @@ var filmListObject = {
                 model: entry,
                 originalWidth: this.thumbnailWidth,
                 originalHeight: this.thumbnailHeight,
-                margin: this.thumbnailGap,
-                ratio: 1.0
+                margin: this.thumbnailGap
             });
             item.init();
             item.refresh();
@@ -31,6 +30,8 @@ var filmListObject = {
 
         return this;
     },
+
+    refresh: function () { },
 
     onResize: function () { }
 };

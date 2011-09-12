@@ -2,11 +2,7 @@ var listItemObject;
 
 (function () {
 
-    var defaultTransformation = function () {
-        if (!this.loaded) {
-            return;
-        }
-
+    var scaleY = function () {
         var r1 = 0.4 + 0.6*this.ratio;
         var r2 = 0.2 + 0.8*this.ratio;
 
@@ -42,11 +38,14 @@ var listItemObject;
 
     listItemObject = {
         loaded: false,
+        ratio: 1.0,
         originalWidth: 0, originalHeight: 0,
-        elWidth: 0, elHeight: 0,
-        elMarginBottom: 0,
-        refresh: defaultTransformation,
-        init: createListItemEl
+        elWidth: 0, elHeight: 0, margin: 0,
+        refresh: scaleY,
+        init: createListItemEl,
+        transformations: {
+            scaleY: scaleY
+        }
     };
 
 })();
