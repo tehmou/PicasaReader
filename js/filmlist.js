@@ -37,5 +37,7 @@ var filmListObject = {
         item.init();
         $("#list-container").append(item.el);
         this.items.push(item);
-    }
+    },
+    
+    onResize: function () { }
 };
