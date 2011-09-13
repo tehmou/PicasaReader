@@ -15,16 +15,25 @@ var createGallery = function (options) {
     }
 
     function createList() {
+        var filmbase, listItem;
+
+        if (options.mode === "css") {
+            filmbase = filmListObject;
+            listItem = domListItemObject;
+        } else {
+            filmbase = glFilmListObject;
+            listItem = glListItemObject;
+        }
+
         var listSettings = {
             el: el,
             model: entries,
-            listItemObject: _.extend({}, listItemObject, {
+            listItemObject: _.extend({}, listItem, {
                 originalWidth: options.thumbnailWidth,
                 originalHeight: options.thumbnailHeight,
                 margin: options.thumbnailGap
             })
         };
-        var filmbase = options.mode === "css" ? filmListObject : glFilmListObject;
         filmlist = _.extend({}, filmbase, wheelerObject, listSettings);
         filmlist.init();
         filmlist.render();

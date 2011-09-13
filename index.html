@@ -17,7 +17,11 @@
     <script type="text/javascript" src="js/views/filmlistbase.js"></script>
     <script type="text/javascript" src="js/views/glfilmlist.js"></script>
     <script type="text/javascript" src="js/views/filmlist.js"></script>
+
     <script type="text/javascript" src="js/views/listitem.js"></script>'
+    <script type="text/javascript" src="js/views/domlistitem.js"></script>'
+    <script type="text/javascript" src="js/views/gllistitem.js"></script>'
+
     <script type="text/javascript" src="js/views/animotor.js"></script>
     <script type="text/javascript" src="js/views/wheeler.js"></script>
 
@@ -30,9 +34,13 @@
     <script type="text/javascript">
 
 
-        jsFacer.assert(listItemObject, "iView");
+        jsFacer.assert(domListItemObject, "iView");
+        jsFacer.assert(glListItemObject, "iView");
+
         jsFacer.assert(filmListObject, "iView");
         jsFacer.assert(glFilmListObject, "iView");
+
+        jsFacer.assert(simpleScrollController, "iScrollController");
 
 
         var galleryOptions = {
