@@ -1,11 +1,11 @@
 var animotorObject = {
     onResize: function() {
-        windowHeight = $(window).height();
+        this.windowHeight = $(window).height();
     },
 
     refresh: function(event) {
-        this.spread = windowHeight;
-        this.focusPos = $(window).scrollTop() + windowHeight/2;
+        this.spread = this.windowHeight;
+        this.focusPos = $(window).scrollTop() + this.windowHeight/2;
         this.calculate();
     },
 

@@ -6,24 +6,41 @@
     <link href="css.less" rel="stylesheet/less" type="text/css">
 
     <script type="text/javascript" src="lib/jquery-1.6.1.js"></script>
-    <script type="text/javascript" src="lib/less-1.0.41.min.js"></script>
+    <script type="text/javascript" src="lib/jquery.mousewheel.js"></script>
+   <script type="text/javascript" src="lib/less-1.0.41.min.js"></script>
     <script type="text/javascript" src="lib/underscore.js"></script>
     <script type="text/javascript" src="lib/backbone.js"></script>
     <script type="text/javascript" src="lib/RequestAnimationFrame.js"></script>
+    <script type="text/javascript" src="lib/c0mposer-0.0.2.js"></script>
+    <script type="text/javascript" src="lib/jsfacer.js"></script>
+
+    <script type="text/javascript" src="js/views/filmlistbase.js"></script>
+    <script type="text/javascript" src="js/views/glfilmlist.js"></script>
+    <script type="text/javascript" src="js/views/filmlist.js"></script>
+    <script type="text/javascript" src="js/views/listitem.js"></script>'
+    <script type="text/javascript" src="js/views/animotor.js"></script>
+    <script type="text/javascript" src="js/views/wheeler.js"></script>
+
+    <script type="text/javascript" src="js/simplescrollcontroller.js"></script>
+    <script type="text/javascript" src="js/gallery.js"></script>
+    <script type="text/javascript" src="js/interfaces.js"></script>
 
     <script type="text/javascript" src="js/urlvars.js"></script>
-    <script type="text/javascript" src="js/listitem.js"></script>
-    <script type="text/javascript" src="js/animotor.js"></script>
-    <script type="text/javascript" src="js/filmlist.js"></script>
-    <script type="text/javascript" src="js/gallery.js"></script>
 
     <script type="text/javascript">
 
+
+        jsFacer.assert(listItemObject, "iView");
+        jsFacer.assert(filmListObject, "iView");
+        jsFacer.assert(glFilmListObject, "iView");
+
+
         var galleryOptions = {
+            feed: [],
             orientation: "vertical",
             mode: urlVars.hasOwnProperty("mode") ? urlVars.mode : "webgl",
             thumbnailWidth: 144,
-            thumbnailHeight: 86,
+            thumbnailHeight: 96,
             thumbnailGap: 7
         };
 
@@ -33,7 +50,12 @@
                 displayEl: $("#image-display"),
                 prepend: [
                     new Backbone.Model({ text: "About" }),
-                    new Backbone.Model({ text: "Menu" })
+                    new Backbone.Model({ text: "Menu" }),
+                    new Backbone.Model({ text: "a" }),
+                    new Backbone.Model({ text: "a" }),
+                    new Backbone.Model({ text: "a" }),
+                    new Backbone.Model({ text: "a" }),
+                    new Backbone.Model({ text: "a" })
                 ],
                 append: [ filler, filler ]
             });
@@ -47,20 +69,19 @@
         });
 
         function initFeed (data) {
-            var feed = [];
+            var feed = galleryOptions.feed;
             _.each(data.feed.entry, function (entry) {
                 feed.push({
                     thumbnailUrl: entry["media$group"]["media$thumbnail"][1].url,
                     imageUrl: entry.content.src
                 })
             });
-            galleryOptions.feed = feed;
         };
 
     </script>
 
     <!--<script type="text/javascript" src="https://picasaweb.google.com/data/feed/base/user/101239827031429117300/albumid/5633001789628058321?alt=json-in-script&callback=initFeed&kind=photo&authkey=Gv1sRgCLbO9sGd-vyWjAE"></script>-->
-    <script type="text/javascript" src="https://picasaweb.google.com/data/feed/base/user/101239827031429117300/albumid/5648146613498236001?alt=json-in-script&callback=initFeed&kind=photo&authkey=Gv1sRgCNGsuZv7wvTvbw"></script>
+    <!--<script type="text/javascript" src="https://picasaweb.google.com/data/feed/base/user/101239827031429117300/albumid/5648146613498236001?alt=json-in-script&callback=initFeed&kind=photo&authkey=Gv1sRgCNGsuZv7wvTvbw"></script>-->
 </head>
 <body>
     <div id="image-wrapper">

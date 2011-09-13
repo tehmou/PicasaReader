@@ -1,14 +1,11 @@
 var createGallery = function (options) {
-    var feed = options.feed;
-    var prependModels = options.prepend;
-    var appendModels = options.append;
-    var el = options.el;
-    var displayEl = options.displayEl;
-    var entries;
+    var feed = options.feed,
+        prependModels = options.prepend,
+        appendModels = options.append,
+        el = options.el,
+        displayEl = options.displayEl;
 
-    createModels();
-    createList();
-    start();
+    var entries, scrollController, filmlist;
 
     function createModels() {
         entries = new Backbone.Collection(feed);
@@ -18,19 +15,34 @@ var createGallery = function (options) {
     }
 
     function createList() {
-        var filmlist = _.extend({}, filmListObject, {
-                listItemObject: listItemObject,
-                model: entries,
-                el: el,
-                thumbnailWidth: options.thumbnailWidth,
-                thumbnailHeight: options.thumbnailHeight,
-                thumbnailGap: options.thumbnailGap
-            }).init();
+        var listSettings = {
+            el: el,
+            model: entries,
+            listItemObject: _.extend({}, listItemObject, {
+                originalWidth: options.thumbnailWidth,
+                originalHeight: options.thumbnailHeight,
+                margin: options.thumbnailGap
+            })
+        };
+        var filmbase = options.mode === "css" ? filmListObject : glFilmListObject;
+        filmlist = _.extend({}, filmbase, wheelerObject, listSettings);
+        filmlist.init();
+        filmlist.render();
         filmlist.onResize();
-        filmlist.refresh();
-        $(window)
-                .resize(filmlist.onResize)
-                .scroll(filmlist.refresh);
+        $(window).resize(filmlist.onResize);
+    }
+
+    function initScrollController() {
+        scrollController = _.extend({}, simpleScrollController, {
+            min: 0, max: entries.models.length * (options.thumbnailHeight + options.thumbnailGap) - $(window).height()
+        });
+        scrollController.positionChangeCallback = function () {
+            filmlist.position = scrollController.position;
+            filmlist.render();
+        };
+        $(window).mousewheel(function (event) {
+            scrollController.deltaFunction(event.wheelDelta);
+        });
     }
 
     function itemClickHandler(item) {
@@ -40,4 +52,9 @@ var createGallery = function (options) {
     function start() {
         itemClickHandler(entries.at(2));
     }
+
+    createModels();
+    createList();
+    initScrollController();
+    start();
 };

@@ -42,13 +42,17 @@ var listItemObject;
         ratio: 1.0,
         originalWidth: 0, originalHeight: 0,
         elWidth: 0, elHeight: 0, margin: 0,
+        elTop: 0, elLeft: 0,
         transformation: transformations.scaleY,
-        refresh: function () {
+        render: function () {
             this.transformation();
             this.img
                 .width(this.elWidth)
                 .height(this.elHeight)
                 .css("opacity", this.opacity);
+            this.el
+                .css("top", this.elTop)
+                .css("left", this.elLeft);
 
         },
         init: createListItemEl
