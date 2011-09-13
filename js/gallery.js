@@ -36,6 +36,7 @@ var createGallery = function (options) {
         scrollController = _.extend({}, simpleScrollController, {
             min: 0, max: entries.models.length * (options.thumbnailHeight + options.thumbnailGap) - $(window).height()
         });
+        scrollController.init();
         scrollController.positionChangeCallback = function () {
             filmlist.position = scrollController.position;
             filmlist.render();
