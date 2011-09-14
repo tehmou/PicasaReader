@@ -18,17 +18,17 @@ var wheelerObject = {
         var pos = 0;
         _.each(this.items, _.bind(function (item) {
             item.pos = pos + item.originalHeight/2;
-            pos += item.elHeight + item.margin;
+            pos += item.originalHeight + item.margin;
         }, this));
     },
 
     calculate: function () {
         _.each(this.items, _.bind(function (item) {
             var pos = item.pos - this.focusPos;
-            var ratio = Math.abs(pos / this.spread);
-            if (item.img) { item.img.text(ratio); }
-            item.elTop = item.pos - this.position - item.originalHeight/2;// - this.windowHeight/2;
-            item.elHeight = item.originalHeight * ratio;
+            var ratio = 1.0 - Math.abs(pos / this.spread);
+            //if (item.img) { item.img.text(pos); }
+            item.elCenter = item.pos - this.position;// - this.windowHeight/2;
+            item.ratio = ratio;
             item.render();
         }, this));
     }
