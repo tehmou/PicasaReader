@@ -5,8 +5,8 @@ var domListItemObject = c0mposer.create(listItemObject, {
             if (this.model.get("thumbnailUrl")) {
                 this.img = $('<img alt="" src="' + this.model.get("thumbnailUrl") + '"/>');
                 this.img[0].onload = _.bind(function () {
-                    this.img.width(this.originalWidth);
-                    this.originalHeight = this.img.height();
+                    //this.img.width(this.originalWidth);
+                    //this.originalHeight = this.img.height();
                     if (this.onload) {
                         this.onload();
                     }

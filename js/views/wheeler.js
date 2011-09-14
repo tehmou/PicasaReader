@@ -27,7 +27,6 @@ var wheelerObject = {
         _.each(this.items, _.bind(function (item) {
             var screenOffset = item.pos - this.position - this.windowHeight/2;
 
-
             var itemAngle = (item.originalHeight)/2*Math.PI*r;
             var angleOffset = screenOffset/(r);
             var centerY = r*Math.sin(angleOffset);
@@ -42,7 +41,7 @@ var wheelerObject = {
 
             item.elWidth = item.originalWidth;
             item.elHeight = height;
-            item.elTop = this.windowHeight/2 + centerY - item.elHeight/2 - this.position;
+            item.elTop = this.windowHeight/2 + centerY - item.elHeight/2;
             item.elOpacity = Math.max(0, (r - distance)/r);
             //item.elTop = item.pos - this.position - item.elHeight/2;// - this.windowHeight/2;
             //item.elTop = item.pos - this.position - item.elHeight/2;// - this.windowHeight/2;
