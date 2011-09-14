@@ -4,11 +4,12 @@ var wheelerObject = {
 
     onResize: function() {
         this.windowHeight = $(window).height();
+        this.render();
     },
 
-    render: function(event) {
-        this.spread = this.windowHeight;
-        this.focusPos = this.position + this.windowHeight/2;
+    render: function() {
+        this.spread = this.windowHeight/2;
+        this.focusPos = this.position - this.windowHeight/2;
         this.calculatePositions();
         this.calculate();
     },
@@ -16,14 +17,15 @@ var wheelerObject = {
     calculatePositions: function () {
         var pos = 0;
         _.each(this.items, _.bind(function (item) {
-            item.pos = pos;
+            item.pos = pos + item.originalHeight/2;
             pos += item.elHeight + item.margin;
         }, this));
     },
 
     calculate: function () {
         _.each(this.items, _.bind(function (item) {
-            item.elTop = item.pos - this.position;
+            var pos = item.pos - this.focusPos;
+            item.elTop = pos - item.originalHeight/2 - this.windowHeight/2;
             item.render();
         }, this));
     }
