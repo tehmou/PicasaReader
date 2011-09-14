@@ -4,12 +4,14 @@ var listItemObject;
 
     var transformations = {
         scaleY: function () {
-            var r1 = 0.4 + 0.6*this.ratio;
-            var r2 = 0.2 + 0.8*this.ratio;
+            /*var sign = this.ratio === 0 ? 0 : (this.ratio/Math.abs(this.ratio));
+            var absR = 1.0 - Math.abs(this.ratio);
+            var r1 = 0.4 + 0.6*absR;
+            var r2 = 0.2 + 0.8*absR;
 
             this.elWidth = this.originalWidth;
-            this.elHeight = Math.floor(this.originalHeight * r1);
-            this.elOpacity = r1;
+            this.elHeight = Math.floor(this.originalHeight * absR);
+            this.elOpacity = r1;*/
         }
     };
 

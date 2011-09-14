@@ -25,10 +25,10 @@ var domListItemObject = c0mposer.create(listItemObject, {
     render: function () {
         this.img
             .width(this.elWidth)
-            .height(this.elHeight)
-            .css("opacity", this.opacity);
+            .height(this.elHeight);
         this.el
-            .css("top", this.elCenter - this.elHeight/2)
-            .css("left", this.elLeft);
+            .css("top", this.elTop)
+            .css("left", this.elLeft)
+            .css("opacity", this.elOpacity);
     }
 });
