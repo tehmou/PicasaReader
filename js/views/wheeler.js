@@ -9,7 +9,7 @@ var wheelerObject = {
 
     render: function() {
         this.spread = this.windowHeight/2;
-        this.focusPos = this.position - this.windowHeight/2;
+        this.focusPos = this.position + this.windowHeight/2;
         this.calculatePositions();
         this.calculate();
     },
@@ -25,7 +25,10 @@ var wheelerObject = {
     calculate: function () {
         _.each(this.items, _.bind(function (item) {
             var pos = item.pos - this.focusPos;
-            item.elTop = pos - item.originalHeight/2 - this.windowHeight/2;
+            var ratio = Math.abs(pos / this.spread);
+            item.img.text(ratio);
+            item.elTop = item.pos - this.position - item.originalHeight/2;// - this.windowHeight/2;
+            item.elHeight = item.originalHeight * ratio;
             item.render();
         }, this));
     }
