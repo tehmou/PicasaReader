@@ -1,7 +1,7 @@
 var simpleScrollController = {
     min: 0, max: 0,
 
-    dragForceConversion: 0.3,
+    dragForceConversion: 8.0,
 
     position: 0,
     speed: 0,
@@ -17,40 +17,6 @@ var simpleScrollController = {
             this.framePending = true;
         }
     },
-    deltaFunction: function (delta) {
-        this.force = delta*this.dragForceConversion;
-        this.requestFrame();
-    },
-
-    calculateForce: function () {
-        var delta = 0;
-        if (this.position < this.min) {
-            delta = this.min - this.position;
-        } else if (this.position > this.max) {
-            delta = this.max - this.position;
-        }
-
-        // Friction
-        this.force += -this.speed*1.1;
-
-        // Rubber
-        this.force += delta*0.2;
-
-        // TODO: does not work...
-        //this.force += delta*2;
-
-        /*if (delta != 0 && this.speed != 0) {
-            //var sign = (this.speed/Math.abs(this.speed));
-            this.force += delta;
-            //this.force += delta === 0 ? 0 : Math.pow(2.0, delta/this.rubberLength);
-        }*/
-    },
-    applyForce: function () {
-        this.speed += this.force;
-    },
-    applySpeed: function () {
-        this.position += this.speed;
-    },
     update: function () {
         this.framePending = false;
 
@@ -65,5 +31,33 @@ var simpleScrollController = {
             this.requestFrame();
         }
         this.force = 0;
+    },  
+    deltaFunction: function (delta) {
+        this.force = delta*this.dragForceConversion;
+        this.requestFrame();
+    },
+
+    calculateForce: function () {
+        var delta = 0;
+        if (this.position < this.min) {
+            delta = this.min - this.position;
+        } else if (this.position > this.max) {
+            delta = this.max - this.position;
+        }
+
+        // Friction
+        //this.force += -this.speed*1.1;
+
+        // Rubber
+        //this.force += delta*0.2;
+
+        // TODO: does not work...
+        //this.force += delta*2;
+    },
+    applyForce: function () {
+        this.speed += this.force;
+    },
+    applySpeed: function () {
+        this.position += this.speed;
     }
 };

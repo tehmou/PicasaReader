@@ -37,22 +37,34 @@ var createGallery = function (options) {
         filmlist = _.extend({}, filmbase, wheelerObject, listSettings);
         filmlist.init();
         filmlist.render();
-        filmlist.onResize();
         $(window).resize(filmlist.onResize);
     }
 
     function initScrollController() {
+        var scrollArea = entries.models.length * (options.thumbnailHeight + options.thumbnailGap);
+        /*var scrollMax =  scrollArea - $(window).height();
+
         scrollController = _.extend({}, simpleScrollController, {
-            min: 0, max: entries.models.length * (options.thumbnailHeight + options.thumbnailGap) - $(window).height()
+            min: 0, max: scrollMax
         });
         scrollController.init();
         scrollController.positionChangeCallback = function () {
             filmlist.position = scrollController.position;
             filmlist.render();
-        };
-        $(window).mousewheel(function (event) {
-            scrollController.deltaFunction(event.wheelDelta);
-        });
+        };*/
+
+        if (options.touchMode === "desktop") {
+            $(window).scroll(function (event) {
+                filmlist.position = $(window).scrollTop();
+                filmlist.render();
+            });
+            $("body").height(scrollArea);
+        }
+
+        /*$(window).mousewheel(function (event, delta) {
+            scrollController.deltaFunction(delta);
+            console.log(event);
+        });*/
     }
 
     function itemClickHandler(item) {

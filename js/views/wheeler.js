@@ -26,7 +26,7 @@ var wheelerObject = {
         _.each(this.items, _.bind(function (item) {
             var pos = item.pos - this.focusPos;
             var ratio = Math.abs(pos / this.spread);
-            item.img.text(ratio);
+            if (item.img) { item.img.text(ratio); }
             item.elTop = item.pos - this.position - item.originalHeight/2;// - this.windowHeight/2;
             item.elHeight = item.originalHeight * ratio;
             item.render();

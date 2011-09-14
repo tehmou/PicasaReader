@@ -7,6 +7,7 @@ var filmListBase = {
         _.bindAll(this);
         this.items = [];
         this.model.each(this.createItem);
+        this.onResize();
     },
     createItem: function (entry) {
         var item = _.extend({}, this.listItemObject, {

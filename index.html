@@ -25,7 +25,7 @@
     <script type="text/javascript" src="js/views/animotor.js"></script>
     <script type="text/javascript" src="js/views/wheeler.js"></script>
 
-    <script type="text/javascript" src="js/utils/simplescrollcontroller.js"></script>
+    <script type="text/javascript" src="js/utils/kineticscrollcontroller.js"></script>
     <script type="text/javascript" src="js/gallery.js"></script>
     <script type="text/javascript" src="js/interfaces.js"></script>
 
@@ -47,6 +47,7 @@
             feed: [],
             orientation: "vertical",
             mode: urlVars.hasOwnProperty("mode") ? urlVars.mode : "webgl",
+            touchMode: "desktop",
             thumbnailWidth: 144,
             thumbnailHeight: 96,
             thumbnailGap: 7
@@ -73,7 +74,7 @@
             });
 
             createGallery(_.extend({}, galleryOptions, { el: $("#list-container"), mode: "css" }));
-            createGallery(_.extend({}, galleryOptions, { el: $("#webgl-list-container"), mode: "webgl" }));
+            //createGallery(_.extend({}, galleryOptions, { el: $("#webgl-list-container"), mode: "webgl" }));
 
             $("#settings-container")
                     .append("<a href='" + baseUrl + "?mode=css'>" + (galleryOptions.mode === "css" ? "[x]" : "[ ]") + " css</a>")
