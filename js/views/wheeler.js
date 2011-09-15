@@ -21,17 +21,17 @@ var wheelerObject = {
     },
 
     calculate: function () {
-        var ballAngle = Math.PI/2;
+        var ballAngle = Math.PI*1.0;
         var r = (this.windowHeight/2)/Math.sin(ballAngle/2);
 
         _.each(this.items, _.bind(function (item) {
             var screenOffset = item.pos - this.position - this.windowHeight/2;
 
-            var itemAngle = (item.originalHeight)/2*Math.PI*r;
+            var itemAngle = item.originalHeight/r;
             var angleOffset = screenOffset/(r);
             var centerY = r*Math.sin(angleOffset);
             var height = r*(Math.sin(angleOffset+itemAngle/2) - Math.sin(angleOffset-itemAngle/2));
-            var distance = r*(1 - Math.cos(angleOffset));
+            var distance = 1 - Math.cos(angleOffset);
 
             //var ratio = pos/this.spread;
             //item.ratio = ratio;
@@ -41,8 +41,9 @@ var wheelerObject = {
 
             item.elWidth = item.originalWidth;
             item.elHeight = height;
+            item.elLeft = distance*40.0;
             item.elTop = this.windowHeight/2 + centerY - item.elHeight/2;
-            item.elOpacity = Math.max(0, (r - distance)/r);
+            item.elOpacity = Math.abs(angleOffset) > Math.PI ? 0.0 : Math.max(0.0, 1.0 - distance/2);
             //item.elTop = item.pos - this.position - item.elHeight/2;// - this.windowHeight/2;
             //item.elTop = item.pos - this.position - item.elHeight/2;// - this.windowHeight/2;
 

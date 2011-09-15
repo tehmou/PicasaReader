@@ -50,7 +50,9 @@
             touchMode: "desktop",
             thumbnailWidth: 144,
             thumbnailHeight: 96,
-            thumbnailGap: 7
+            thumbnailGap: 7,
+            createDebug: true,
+            numDebugItems: 100
         };
 
         $(function () {
@@ -59,16 +61,7 @@
                 displayEl: $("#image-display"),
                 prepend: [
                     new Backbone.Model({ text: "About" }),
-                    new Backbone.Model({ text: "Menu" }),
-                    new Backbone.Model({ text: "a" }),
-                    new Backbone.Model({ text: "a" }),
-                    new Backbone.Model({ text: "a" }),
-                    new Backbone.Model({ text: "a" }),
-                    new Backbone.Model({ text: "a" }),
-                    new Backbone.Model({ text: "a" }),
-                    new Backbone.Model({ text: "a" }),
-                    new Backbone.Model({ text: "a" }),
-                    new Backbone.Model({ text: "a" })
+                    new Backbone.Model({ text: "Menu" })
                 ],
                 append: [ filler, filler ]
             });

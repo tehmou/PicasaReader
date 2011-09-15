@@ -8,10 +8,16 @@ var createGallery = function (options) {
     var entries, scrollController, filmlist;
 
     function createModels() {
-        entries = new Backbone.Collection(feed);
+        var models = [];
+        if (options.createDebug) {
+            for (var i = 0; i < options.numDebugItems; i++) {
+                models.push({ text: "" + i });
+            }
+        } else {
+            models = prependModels.concat(feed).concat(appendModels);
+        }
+        entries = new Backbone.Collection(models);
         entries.bind("itemClick", itemClickHandler);
-        entries.models.splice.apply(entries.models, [0, 0].concat(prependModels));
-        entries.models.splice.apply(entries.models, [entries.models.length, 0].concat(appendModels));
     }
 
     function createList() {
