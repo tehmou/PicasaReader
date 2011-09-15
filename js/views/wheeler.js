@@ -1,9 +1,10 @@
 var wheelerObject = {
 
     position: 0,
+    itemOffset: 0,
 
     onResize: function() {
-        this.windowHeight = $(window).height();
+        this.windowHeight = this.el.height();
         this.render();
     },
 
@@ -14,10 +15,21 @@ var wheelerObject = {
 
     calculatePositions: function () {
         var pos = 0;
-        _.each(this.items, _.bind(function (item) {
+        var offset = 0;
+        var increment, item;
+
+        for (var i = 0; i < this.items.length; i++) {
+            item = this.items[i];
+            increment = item.originalHeight + item.margin;
             item.pos = pos + item.originalHeight/2;
-            pos += item.originalHeight + item.margin;
-        }, this));
+            pos += increment;
+            if (i < this.itemOffset) {
+                offset += increment;
+            }
+        }
+        _.each(this.items, function (item) {
+            item.pos -= offset;
+        });
     },
 
     calculate: function () {

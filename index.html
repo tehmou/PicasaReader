@@ -51,8 +51,9 @@
             thumbnailWidth: 144,
             thumbnailHeight: 96,
             thumbnailGap: 7,
-            createDebug: false,
-            numDebugItems: 100
+            numMarginItems: 1,
+            createDebug: true,
+            numDebugItems: 20
         };
 
         $(function () {
@@ -62,9 +63,13 @@
                     //new Backbone.Model({ text: "About" }),
                     //new Backbone.Model({ text: "Menu" })
                     new Backbone.Model(),
+                    new Backbone.Model(),
+                    new Backbone.Model(),
                     new Backbone.Model()
                 ],
                 append: [
+                    new Backbone.Model(),
+                    new Backbone.Model(),
                     new Backbone.Model(),
                     new Backbone.Model()
                 ]

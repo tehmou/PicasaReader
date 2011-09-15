@@ -5,7 +5,7 @@ var createGallery = function (options) {
         el = options.el,
         displayEl = options.displayEl;
 
-    var entries, scrollController, filmlist;
+    var entries, filmlist;
 
     function createModels() {
         var models = [];
@@ -34,6 +34,7 @@ var createGallery = function (options) {
         var listSettings = {
             el: el,
             model: entries,
+            itemOffset: options.numMarginItems,
             listItemObject: _.extend({}, listItem, {
                 originalWidth: options.thumbnailWidth,
                 originalHeight: options.thumbnailHeight,
@@ -47,7 +48,7 @@ var createGallery = function (options) {
     }
 
     function initScrollController() {
-        var scrollArea = entries.models.length * (options.thumbnailHeight + options.thumbnailGap);
+        var scrollArea = (entries.models.length-2*options.numMarginItems) * (options.thumbnailHeight + options.thumbnailGap);
         /*var scrollMax =  scrollArea - $(window).height();
 
         scrollController = _.extend({}, simpleScrollController, {
