@@ -51,27 +51,31 @@
             thumbnailWidth: 144,
             thumbnailHeight: 96,
             thumbnailGap: 7,
-            createDebug: true,
+            createDebug: false,
             numDebugItems: 100
         };
 
         $(function () {
-            var filler = new Backbone.Model();
             _.extend(galleryOptions, {
                 displayEl: $("#image-display"),
                 prepend: [
-                    new Backbone.Model({ text: "About" }),
-                    new Backbone.Model({ text: "Menu" })
+                    //new Backbone.Model({ text: "About" }),
+                    //new Backbone.Model({ text: "Menu" })
+                    new Backbone.Model(),
+                    new Backbone.Model()
                 ],
-                append: [ filler, filler ]
+                append: [
+                    new Backbone.Model(),
+                    new Backbone.Model()
+                ]
             });
 
             createGallery(_.extend({}, galleryOptions, { el: $("#list-container"), mode: "css" }));
             //createGallery(_.extend({}, galleryOptions, { el: $("#webgl-list-container"), mode: "webgl" }));
 
-            $("#settings-container")
-                    .append("<a href='" + baseUrl + "?mode=css'>" + (galleryOptions.mode === "css" ? "[x]" : "[ ]") + " css</a>")
-                    .append("<a href='" + baseUrl + "'>"+ (galleryOptions.mode === "webgl" ? "[x]" : "[ ]") + " webgl</a>")
+            //$("#settings-container")
+            //        .append("<a href='" + baseUrl + "?mode=css'>" + (galleryOptions.mode === "css" ? "[x]" : "[ ]") + " css</a>")
+            //        .append("<a href='" + baseUrl + "'>"+ (galleryOptions.mode === "webgl" ? "[x]" : "[ ]") + " webgl</a>")
         });
 
         function initFeed (data) {
@@ -87,14 +91,14 @@
     </script>
 
     <!--<script type="text/javascript" src="https://picasaweb.google.com/data/feed/base/user/101239827031429117300/albumid/5633001789628058321?alt=json-in-script&callback=initFeed&kind=photo&authkey=Gv1sRgCLbO9sGd-vyWjAE"></script>-->
-    <!--<script type="text/javascript" src="https://picasaweb.google.com/data/feed/base/user/101239827031429117300/albumid/5648146613498236001?alt=json-in-script&callback=initFeed&kind=photo&authkey=Gv1sRgCNGsuZv7wvTvbw"></script>-->
+    <script type="text/javascript" src="https://picasaweb.google.com/data/feed/base/user/101239827031429117300/albumid/5648146613498236001?alt=json-in-script&callback=initFeed&kind=photo&authkey=Gv1sRgCNGsuZv7wvTvbw"></script>
 </head>
 <body>
     <div id="image-wrapper">
         <img id="image-display" alt=""/>
     </div>
-    <div id="list-container"></div>
     <canvas id="webgl-list-container"></canvas>
+    <div id="list-container"></div>
     <div id="settings-container"></div>
 </body>
 </html>
