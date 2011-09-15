@@ -24,10 +24,10 @@ var createGallery = function (options) {
         var filmbase, listItem;
 
         if (options.mode === "css") {
-            filmbase = filmListObject;
+            filmbase = domListObject;
             listItem = domListItemObject;
         } else {
-            filmbase = glFilmListObject;
+            filmbase = glListObject;
             listItem = glListItemObject;
         }
 
@@ -43,6 +43,7 @@ var createGallery = function (options) {
         };
         filmlist = _.extend({}, filmbase, wheelerObject, listSettings);
         filmlist.init();
+        filmlist.onResize();
         filmlist.render();
         $(window).resize(filmlist.onResize);
     }

@@ -1,4 +1,4 @@
-var filmListObject = c0mposer.create(filmListBase, {
+var domListObject = c0mposer.create(listBaseObject, {
     itemCreated: function (item) {
         $(item.el).click(function () {
             item.model.trigger("itemClick", item.model);

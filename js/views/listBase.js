@@ -1,4 +1,4 @@
-var filmListBase = {
+var listBaseObject = {
     
     listItemObject: null,
     model: null,
@@ -7,7 +7,6 @@ var filmListBase = {
         _.bindAll(this);
         this.items = [];
         this.model.each(this.createItem);
-        this.onResize();
     },
     createItem: function (entry) {
         var item = _.extend({}, this.listItemObject, {
@@ -21,6 +20,5 @@ var filmListBase = {
     itemCreated: function (item) {
         this.items.push(item);
     },
-    render: function () { },
-    onResize: function () { }
+    render: function () { }
 };

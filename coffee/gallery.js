@@ -24,7 +24,7 @@
           margin: options.thumbnailGap
         })
       };
-      filmbase = options.mode === "css" ? filmListObject : glFilmListObject;
+      filmbase = options.mode === "css" ? domFilmListObject : glFilmListObject;
       filmlist = _.extend({}, filmbase, listSettings);
       filmlist.init();
       filmlist.onResize();
