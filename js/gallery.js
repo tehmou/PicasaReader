@@ -3,7 +3,8 @@ timotuominen.createGallery = function (options) {
         prependModels = options.prepend,
         appendModels = options.append,
         el = options.el,
-        displayEl = options.displayEl;
+        displayEl = options.displayEl,
+        transformation = options.transformation;
 
     var entries, filmlist;
 
@@ -41,7 +42,7 @@ timotuominen.createGallery = function (options) {
                 margin: options.thumbnailGap
             })
         };
-        filmlist = _.extend({}, listView, timotuominen.views.transformations.spherical, listSettings);
+        filmlist = _.extend({}, listView, transformation, listSettings);
         filmlist.init();
         filmlist.onResize();
         filmlist.render();
