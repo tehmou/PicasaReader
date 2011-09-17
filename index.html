@@ -33,20 +33,12 @@
     <script type="text/javascript" src="js/utils/maths.js"></script>
     <script type="text/javascript" src="js/utils/urlVars.js"></script>
 
-    <script type="text/javascript" src="js/gallery.js"></script>
     <script type="text/javascript" src="js/interfaces.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/navi.js"></script>
 
 
     <script type="text/javascript">
-
-
-        jsFacer.assert(timotuominen.views.item.domListItemObject, "iView");
-        jsFacer.assert(timotuominen.views.item.glListItemObject, "iView");
-
-        jsFacer.assert(timotuominen.views.domListObject, "iView");
-        jsFacer.assert(timotuominen.views.glListObject, "iView");
-
-        jsFacer.assert(timotuominen.utils.kineticScrollController, "iScrollController");
 
 
         var galleryOptions = {
@@ -58,7 +50,12 @@
             thumbnailHeight: 96,
             thumbnailGap: 7,
             numMarginItems: 2,
-            transformation: timotuominen.views.transformations.conveyor,
+            transformation: _.extend({}, timotuominen.views.transformations.conveyor, {
+                widthOffset: 10.0,
+                leftOffset: 18.0,
+                ballAngle: Math.PI*.9,
+                straightLengthPercentage: .6
+            }),
             createDebug: false,
             numDebugItems: 20
         };
@@ -67,8 +64,6 @@
             _.extend(galleryOptions, {
                 displayEl: $("#image-display"),
                 prepend: [
-                    //new Backbone.Model({ text: "About" }),
-                    //new Backbone.Model({ text: "Menu" })
                     new Backbone.Model(),
                     new Backbone.Model(),
                     new Backbone.Model({ text: "about" }),
@@ -82,8 +77,8 @@
                 ]
             });
 
-            timotuominen.createGallery(_.extend({}, galleryOptions, { el: $("#list-container"), mode: "css" }));
-            timotuominen.createGallery(_.extend({}, galleryOptions, { el: $("#webgl-list-container"), mode: "webgl" }));
+            timotuominen.init(_.extend({}, galleryOptions, { el: $("#list-container"), mode: "css" }));
+            timotuominen.init(_.extend({}, galleryOptions, { el: $("#webgl-list-container"), mode: "webgl" }));
 
             //$("#settings-container")
             //        .append("<a href='" + baseUrl + "?mode=css'>" + (galleryOptions.mode === "css" ? "[x]" : "[ ]") + " css</a>")

@@ -1,5 +1,4 @@
 timotuominen.views.listBaseObject = {
-    
     listItemObject: null,
     model: null,
 
