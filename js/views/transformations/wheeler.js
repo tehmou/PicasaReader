@@ -1,15 +1,16 @@
-var wheelerObject = {
+timotuominen.views.transformations.wheelerObject = {
 
     position: 0,
+    r: 0,
+
     itemOffset: 0,
     widthOffset: 10.0,
     leftOffset: 18.0,
+    ballAngle: Math.PI*.9,
 
-    getPosition: function () {
-        return this.position;
-    },
     onResize: function() {
         this.windowHeight = this.el.height();
+        this.r = (this.windowHeight/2)/Math.sin(this.ballAngle/2);
         this.calculatePositions();
         this.render();
     },
@@ -35,19 +36,16 @@ var wheelerObject = {
         });
     },
     calculate: function () {
-        var ballAngle = Math.PI*.9;
-        var r = (this.windowHeight/2)/Math.sin(ballAngle/2);
-
         _.each(this.items, _.bind(function (item) {
             var screenOffset = item.pos - this.position - this.windowHeight/2;
-            var itemAngle = item.originalHeight/r;
-            var angleOffset = screenOffset/(r);
+            var itemAngle = item.originalHeight/this.r;
+            var angleOffset = screenOffset/this.r;
 
             if (Math.abs(angleOffset) > Math.PI) {
                 item.elOpacity = 0;
             } else {
-                var centerY = r*Math.sin(angleOffset);
-                var height = Math.abs(r*(Math.sin(angleOffset+itemAngle/2) - Math.sin(angleOffset-itemAngle/2)));
+                var centerY = this.r*Math.sin(angleOffset);
+                var height = Math.abs(this.r*(Math.sin(angleOffset+itemAngle/2) - Math.sin(angleOffset-itemAngle/2)));
                 var distance = 1 - Math.cos(angleOffset);
 
                 item.elWidth = item.originalWidth - distance*this.widthOffset;
@@ -57,11 +55,6 @@ var wheelerObject = {
                 item.elOpacity = Math.max(0.0, 1.0 - distance);
             }
             item.render();
-
-            if (item.img) {
-                //item.img.text(height);
-            }
-
         }, this));
     }
 };

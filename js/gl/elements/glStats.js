@@ -1,4 +1,4 @@
-var glStats = {
+timotuominen.gl.elements.glStats = {
     stats: null,
     init: function () {
         this.stats = new Stats();

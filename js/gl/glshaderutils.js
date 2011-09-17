@@ -1,4 +1,4 @@
-var glShaderUtils = {
+timotuominen.gl.glShaderUtils = {
     createShader: function (gl, fragmentShaderCode, vertexShaderCode)
     {
         var infoLog;

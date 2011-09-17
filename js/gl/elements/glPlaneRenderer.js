@@ -1,4 +1,4 @@
-var glImageRenderer = {
+timotuominen.gl.elements.glImageRenderer = {
     mQuadVBO: null,
 
     init: function () {

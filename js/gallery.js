@@ -1,4 +1,4 @@
-var createGallery = function (options) {
+timotuominen.createGallery = function (options) {
     var feed = options.feed,
         prependModels = options.prepend,
         appendModels = options.append,
@@ -21,14 +21,14 @@ var createGallery = function (options) {
     }
 
     function createList() {
-        var filmbase, listItem;
+        var listView, listItem;
 
         if (options.mode === "css") {
-            filmbase = domListObject;
-            listItem = domListItemObject;
+            listView = timotuominen.views.domListObject;
+            listItem = timotuominen.views.item.domListItemObject;
         } else {
-            filmbase = glListObject;
-            listItem = glListItemObject;
+            listView = timotuominen.views.glListObject;
+            listItem = timotuominen.views.item.glListItemObject;
         }
 
         var listSettings = {
@@ -41,7 +41,7 @@ var createGallery = function (options) {
                 margin: options.thumbnailGap
             })
         };
-        filmlist = _.extend({}, filmbase, wheelerObject, listSettings);
+        filmlist = _.extend({}, listView, timotuominen.views.transformations.wheelerObject, listSettings);
         filmlist.init();
         filmlist.onResize();
         filmlist.render();

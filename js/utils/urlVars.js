@@ -1,5 +1,3 @@
-var urlVars, baseUrl;
-
 (function () {
     var href = window.location.href,
         vars = [],
@@ -16,6 +14,6 @@ var urlVars, baseUrl;
         }
     }
 
-    baseUrl = parts[0];
-    urlVars = vars;
+    timotuominen.utils.baseUrl = parts[0];
+    timotuominen.utils.urlVars = vars;
 })();

@@ -1,4 +1,4 @@
-var glAnimateRatio = {
+timotuominen.gl.elements.glAnimateRatio = {
     time: 0.0,
     preRender: function () {
         this.time += 0.01;

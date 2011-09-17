@@ -1,4 +1,4 @@
-var glTextureUtils = {
+timotuominen.gl.glTextureUtils = {
     loadImageTexture: function (gl, url)
     {
         var texture = gl.createTexture();

@@ -1,4 +1,4 @@
-var simpleScrollController = {
+timotuominen.utils.kineticScrollController = {
     min: 0, max: 0,
 
     dragForceConversion: 8.0,

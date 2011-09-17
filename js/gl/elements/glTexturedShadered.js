@@ -1,4 +1,4 @@
-var glTexturedShadered = {
+timotuominen.gl.elements.glTexturedShadered = {
     fragmentShaderCode: null,
     vertexShaderCode: null,
     shader: null,

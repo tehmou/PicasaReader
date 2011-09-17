@@ -1,4 +1,4 @@
-var listBaseObject = {
+timotuominen.views.listBaseObject = {
     
     listItemObject: null,
     model: null,

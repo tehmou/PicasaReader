@@ -1,4 +1,4 @@
-var glUtils = {
+timotuominen.gl.glUtils = {
     initGL: function (canvas) {
         var gl = canvas.getContext("experimental-webgl");
         gl.viewportWidth = canvas.width;

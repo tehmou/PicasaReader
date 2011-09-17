@@ -1,4 +1,4 @@
-var domListItemObject = c0mposer.create(listItemObject, {
+timotuominen.views.item.domListItemObject = c0mposer.create(timotuominen.views.item.listItemObject, {
     init: function () {
         this.el = $('<div></div>');
         if (this.model) {

@@ -14,6 +14,8 @@
     <script type="text/javascript" src="lib/c0mposer-0.0.2.js"></script>
     <script type="text/javascript" src="lib/jsfacer.js"></script>
 
+    <script type="text/javascript" src="js/namespace.js"></script>
+    
     <script type="text/javascript" src="js/views/listBase.js"></script>
     <script type="text/javascript" src="js/views/glList.js"></script>
     <script type="text/javascript" src="js/views/domList.js"></script>
@@ -22,30 +24,30 @@
     <script type="text/javascript" src="js/views/item/domListItem.js"></script>'
     <script type="text/javascript" src="js/views/item/glListItem.js"></script>'
 
-    <script type="text/javascript" src="js/views/wheeler.js"></script>
+    <script type="text/javascript" src="js/views/transformations/wheeler.js"></script>
 
     <script type="text/javascript" src="js/utils/kineticScrollController.js"></script>
     <script type="text/javascript" src="js/gallery.js"></script>
     <script type="text/javascript" src="js/interfaces.js"></script>
 
-    <script type="text/javascript" src="js/urlVars.js"></script>
+    <script type="text/javascript" src="js/utils/urlVars.js"></script>
 
     <script type="text/javascript">
 
 
-        jsFacer.assert(domListItemObject, "iView");
-        jsFacer.assert(glListItemObject, "iView");
+        jsFacer.assert(timotuominen.views.item.domListItemObject, "iView");
+        jsFacer.assert(timotuominen.views.item.glListItemObject, "iView");
 
-        jsFacer.assert(domListObject, "iView");
-        jsFacer.assert(glListObject, "iView");
+        jsFacer.assert(timotuominen.views.domListObject, "iView");
+        jsFacer.assert(timotuominen.views.glListObject, "iView");
 
-        jsFacer.assert(simpleScrollController, "iScrollController");
+        jsFacer.assert(timotuominen.utils.kineticScrollController, "iScrollController");
 
 
         var galleryOptions = {
             feed: [],
             orientation: "vertical",
-            mode: urlVars.hasOwnProperty("mode") ? urlVars.mode : "webgl",
+            mode: timotuominen.utils.urlVars.hasOwnProperty("mode") ? timotuominen.utils.urlVars.mode : "webgl",
             touchMode: "desktop",
             thumbnailWidth: 144,
             thumbnailHeight: 96,
@@ -74,8 +76,8 @@
                 ]
             });
 
-            createGallery(_.extend({}, galleryOptions, { el: $("#list-container"), mode: "css" }));
-            createGallery(_.extend({}, galleryOptions, { el: $("#webgl-list-container"), mode: "webgl" }));
+            timotuominen.createGallery(_.extend({}, galleryOptions, { el: $("#list-container"), mode: "css" }));
+            timotuominen.createGallery(_.extend({}, galleryOptions, { el: $("#webgl-list-container"), mode: "webgl" }));
 
             //$("#settings-container")
             //        .append("<a href='" + baseUrl + "?mode=css'>" + (galleryOptions.mode === "css" ? "[x]" : "[ ]") + " css</a>")

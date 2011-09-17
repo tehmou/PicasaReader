@@ -1,4 +1,4 @@
-var glObject = {
+timotuominen.gl.elements.glObject = {
     gl: null,
     el: null,
 
