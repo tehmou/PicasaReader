@@ -7,3 +7,7 @@ jsFacer.define("iScrollController", {
     init: "function",
     deltaFunction: "function"
 });
+
+jsFacer.define("iPositionController", {
+     
+});

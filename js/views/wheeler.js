@@ -2,8 +2,8 @@ var wheelerObject = {
 
     position: 0,
     itemOffset: 0,
-    widthOffset: 0.0,
-    leftOffset: 8.0,
+    widthOffset: 10.0,
+    leftOffset: 18.0,
 
     getPosition: function () {
         return this.position;
