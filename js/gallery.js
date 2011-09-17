@@ -41,7 +41,7 @@ timotuominen.createGallery = function (options) {
                 margin: options.thumbnailGap
             })
         };
-        filmlist = _.extend({}, listView, timotuominen.views.transformations.wheelerObject, listSettings);
+        filmlist = _.extend({}, listView, timotuominen.views.transformations.spherical, listSettings);
         filmlist.init();
         filmlist.onResize();
         filmlist.render();
