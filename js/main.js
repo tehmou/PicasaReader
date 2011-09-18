@@ -13,7 +13,7 @@ timotuominen.init = function (options) {
         prependModels = options.prepend,
         appendModels = options.append;
 
-    var entries;
+    var entries, imageDisplay;
 
     function createModels() {
         var models = [];
@@ -29,11 +29,11 @@ timotuominen.init = function (options) {
     }
 
     function itemClickHandler(item) {
-        displayEl.attr("src", item.get("imageUrl"));
+        imageDisplay.bindToModel(item);
     }
 
     function start() {
-        itemClickHandler(entries.at(2));
+        itemClickHandler(entries.at(prependModels.length));
     }
 
     createModels();
@@ -41,5 +41,8 @@ timotuominen.init = function (options) {
         el: options.el,
         entries: entries
     }));
+    imageDisplay = _.extend({}, timotuominen.views.imageDisplay, {
+        el: displayEl
+    }).init();
     start();
 };
