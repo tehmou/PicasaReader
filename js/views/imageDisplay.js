@@ -1,13 +1,27 @@
 timotuominen.views.imageDisplay = {
     model: null,
-    lastModel: null,
+
     changeSpeed: 0.05,
 
     changeRatio: 1.0,
     loading: false,
 
     bindToModel: function (model) {
+        if (this.loading) {
+            return;
+        }
+        this.loading = true;
         this.model = model;
+
+        var image = new Image();
+        image.onload = _.bind(function() {
+            this.el.prepend(image);
+            this.loading = false;
+            this.changeRatio = 0.0;
+            this.render();
+        }, this);
+        image.src = this.model.get("imageUrl");
+
         this.render();
     },
     init: function () {
@@ -15,33 +29,26 @@ timotuominen.views.imageDisplay = {
     },
     render: function () {
         if (!this.loading) {
-
-            if (this.model != this.lastModel && this.changeRatio === 1.0) {
-                this.loading = true;
-                var image = new Image();
-                image.onload = _.bind(function() {
-                    this.el.html("");
-                    this.el.append(image);
-                    this.loading = false;
-                    this.changeRatio = 0.0;
-                    this.render();
-                }, this);
-                image.src = this.model.get("imageUrl");
-            }
-
+            this.el.css("opacity", 1.0);
+            
             if (this.changeRatio < 1.0) {
                 this.changeRatio += this.changeSpeed;
                 if (this.changeRatio >= 1.0) {
                     this.changeRatio = 1.0;
+                    if (this.el.children().length > 1) {
+                        $(this.el.children()[1]).remove();
+                    }
                 } else {
                     requestAnimationFrame(_.bind(this.render, this));
                 }
             }
-            
-            this.el.css("opacity", this.changeRatio);
+
+            if (this.el.children().length > 1) {
+                $(this.el.children()[1]).css("opacity", 0.8*(1.0 - this.changeRatio));
+            }
         }
         if (this.loading) {
-            this.el.css("opacity", 0.4);
+            this.el.css("opacity", 0.8);
         }
     }
 };
