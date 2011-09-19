@@ -1,5 +1,5 @@
 timotuominen.views.glListObject = c0mposer.create(
-    timotuominen.gl.elements.glObject,
+    timotuominen.gl.elements.glCanvas,
     {
         render: function () {
             this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);

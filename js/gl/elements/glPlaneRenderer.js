@@ -10,7 +10,7 @@ timotuominen.gl.elements.glPlaneRenderer = {
     preRender: function () {
         this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.mQuadVBO);
     },
-    render: function () {
+    actualRender: function () {
         this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
     }
 };

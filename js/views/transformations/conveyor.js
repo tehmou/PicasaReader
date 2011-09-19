@@ -32,11 +32,13 @@ timotuominen.views.transformations.conveyor = c0mposer.create(timotuominen.views
                 } else {
                     var absStraightCompensation = this.halfWindowHeight*this.straightLengthPercentage;
                     var centerY = this.r*Math.sin(angleOffset) + sign*absStraightCompensation;
-                    var height = Math.abs(this.r*(Math.sin(angleOffset+itemAngle/2) - Math.sin(angleOffset-itemAngle/2)));
+                    var height = this.r*(Math.sin(angleOffset+itemAngle/2) - Math.sin(angleOffset-itemAngle/2));
                     var distance = 1 - Math.cos(angleOffset);
 
+                    //console.log("angle:" + (itemAngle*180/Math.PI) + ", offset:" + (angleOffset*180/Math.PI) + ", height:" + height);
+
                     item.elWidth = item.originalWidth - distance*this.widthOffset;
-                    item.elHeight = height;
+                    item.elHeight = Math.abs(height);
                     item.elLeft = distance*(this.leftOffset+this.widthOffset/2);
                     item.elTop = this.halfWindowHeight + centerY - item.elHeight/2;
                     item.elOpacity = Math.max(0.0, 1.0 - distance);

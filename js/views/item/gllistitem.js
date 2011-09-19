@@ -1,5 +1,7 @@
 timotuominen.views.item.glListItemObject = c0mposer.create(
+    timotuominen.gl.elements.glObject,
     timotuominen.gl.elements.glPlaneRenderer,
+    timotuominen.gl.elements.glShadered,
     timotuominen.views.item.listItemObject,
     {
     init: function () {
