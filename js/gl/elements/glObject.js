@@ -3,7 +3,7 @@ timotuominen.gl.elements.glObject = {
     el: null,
 
     init: function () {
-        this.gl = glUtils.initGL(this.el);
+        this.gl = timotuominen.gl.glUtils.initGL(this.el[0]);
         this.renderLoop = _.bind(this.renderLoop, this);
     },
     run: function () {

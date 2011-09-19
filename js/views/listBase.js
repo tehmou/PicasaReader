@@ -11,13 +11,13 @@ timotuominen.views.listBaseObject = {
         var item = _.extend({}, this.listItemObject, {
             model: entry
         });
-        item.init();
-        item.render();
-        item.onload = function () { this.render(); };
+        this.items.push(item);
         this.itemCreated(item);
     },
     itemCreated: function (item) {
-        this.items.push(item);
+        item.init();
+        item.onload = function () { this.render(); };
+        item.render();
     },
     render: function () { }
 };

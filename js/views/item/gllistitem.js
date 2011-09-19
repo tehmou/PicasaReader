@@ -1,4 +1,7 @@
-timotuominen.views.item.glListItemObject = c0mposer.create(timotuominen.views.item.listItemObject, {
+timotuominen.views.item.glListItemObject = c0mposer.create(
+    timotuominen.gl.elements.glPlaneRenderer,
+    timotuominen.views.item.listItemObject,
+    {
     init: function () {
         /*this.el = $('<div></div>');
         if (this.model) {
@@ -22,13 +25,8 @@ timotuominen.views.item.glListItemObject = c0mposer.create(timotuominen.views.it
         }
         this.el.append(this.img);*/
     },
-    render: function () {
-        /*this.img
-            .width(this.elWidth)
-            .height(this.elHeight)
-            .css("opacity", this.opacity);
-        this.el
-            .css("top", this.elTop)
-            .css("left", this.elLeft);*/
-    }
+    preRender: function () {
+
+    },
+    render: function () { }
 });

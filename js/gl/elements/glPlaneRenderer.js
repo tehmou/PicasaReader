@@ -1,4 +1,4 @@
-timotuominen.gl.elements.glImageRenderer = {
+timotuominen.gl.elements.glPlaneRenderer = {
     mQuadVBO: null,
 
     init: function () {

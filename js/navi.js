@@ -26,7 +26,8 @@ timotuominen.createGallery = function (options) {
                 margin: options.thumbnailGap
             })
         };
-        listView = _.extend({}, listView, transformation, listSettings);
+        
+        listView = c0mposer.create(listView, transformation, listSettings);
         listView.init();
         listView.onResize();
         listView.render();

@@ -4,7 +4,7 @@ jsFacer.assert(timotuominen.views.item.glListItemObject, "iView");
 jsFacer.assert(timotuominen.views.domListObject, "iView");
 jsFacer.assert(timotuominen.views.glListObject, "iView");
 
-jsFacer.assert(timotuominen.utils.kineticScrollController, "iScrollController");
+//jsFacer.assert(timotuominen.utils.kineticScrollController, "iScrollController");
 
 
 timotuominen.init = function (options) {
