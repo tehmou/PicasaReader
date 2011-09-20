@@ -5,14 +5,14 @@ timotuominen.views.glListObject = c0mposer.create(
         vertexShaderCode: "attribute vec3 position;\nuniform mat4 uMVMatrix;\nuniform mat4 uPMatrix;\nvoid main(void) {\n\tgl_Position = uPMatrix*uMVMatrix*vec4(position.x, position.y, 0.0, 1.0);\n}",
         shader: null,
         init: function () {
+            this.el[0].width = 500;
+            this.el[0].height = 500;
             this.gl = this.el[0].getContext("experimental-webgl");
             this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
-            this.gl.clearDepth(1.0);
             this.viewportWidth = this.el[0].width;
             this.viewportHeight = this.el[0].height;
             this.createShader();
             this.createPlane();
-            this.render();
         },
         createShader: function () {
             this.shader = timotuominen.gl.glShaderUtils.createShader(this.gl, this.fragmentShaderCode, this.vertexShaderCode);
@@ -31,7 +31,7 @@ timotuominen.views.glListObject = c0mposer.create(
             this.gl.uniformMatrix4fv(this.gl.getUniformLocation(this.shader, "uPMatrix"), false, matrix);
         },
         createPlane: function () {
-            var vertices = new Float32Array([ -1.,-1., 1.,-1., -1.,1., 1.,-1., 1.,1., -1.,1.]);
+            var vertices = new Float32Array([ -.5,-.5, .5,-.5, -.5,.5, .5,-.5, .5,.5, -.5,.5]);
             this.mQuadVBO = this.gl.createBuffer();
             this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.mQuadVBO);
             this.gl.bufferData(this.gl.ARRAY_BUFFER, vertices, this.gl.STATIC_DRAW);
@@ -44,14 +44,28 @@ timotuominen.views.glListObject = c0mposer.create(
             var w = this.viewportWidth;
             var h = this.viewportHeight;
             var m = mat4.create();
-            mat4.identity(m);
-            mat4.scale(m, [0.5, 0.5, 1.0]);
-            mat4.translate(m, [0.5, 1.0, 0]);
-            this.setShaderMVMatrix(m);
 
             this.gl.viewport(0, 0, w, h);
             this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
-            this.gl.drawArrays(this.gl.TRIANGLES, 0, 3);
+
+            for (var i = 0; i < this.items.length; i++) {
+                var item = this.items[i];
+                if (item.elOpacity === 0) {
+                    continue;
+                }
+                var sx = item.elWidth/w,
+                    sy = item.elHeight/h;
+
+                mat4.identity(m);
+                mat4.scale(m, [sx, sy, 1.0]);
+                this.setShaderMVMatrix(m);
+
+                mat4.identity(m);
+                mat4.translate(m, [item.elLeft/w, .5-(item.elTop + item.elHeight/2)/h, 0]);
+                this.setShaderPMatrix(m);
+
+                this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
+            }
         }
     },
     timotuominen.views.listBaseObject
