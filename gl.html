@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <script type="text/javascript" src="lib/jquery-1.6.1.js"></script>
+    <script type="text/javascript" src="lib/less-1.0.41.min.js"></script>
+    <script type="text/javascript" src="lib/underscore.js"></script>
+    <script type="text/javascript" src="lib/backbone.js"></script>
+    <script type="text/javascript" src="lib/RequestAnimationFrame.js"></script>
+    <script type="text/javascript" src="lib/c0mposer-0.0.2.js"></script>
+    <script type="text/javascript" src="lib/jsfacer.js"></script>
+    <script type="text/javascript" src="lib/glMatrix-0.9.5.min.js"></script>
+
+    <script type="text/javascript" src="js/namespace.js"></script>
+
+    <script src="js/gl/glTextureUtils.js" type="text/javascript"></script>
+    <script src="js/gl/glShaderUtils.js" type="text/javascript"></script>
+    <script src="js/gl/glUtils.js" type="text/javascript"></script>
+
+    <script src="js/gl/elements/glAnimateRatio.js" type="text/javascript"></script>
+    <script src="js/gl/elements/glObject.js" type="text/javascript"></script>
+    <script src="js/gl/elements/glCanvas.js" type="text/javascript"></script>
+    <script src="js/gl/elements/glPlaneRenderer.js" type="text/javascript"></script>
+    <script src="js/gl/elements/glShadered.js" type="text/javascript"></script>
+    <script src="js/gl/elements/glStats.js" type="text/javascript"></script>
+    <script src="js/gl/elements/glTexturedShadered.js" type="text/javascript"></script>
+
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #webgl {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script type="text/javascript">
+
+        $(function () {
+
+            var viewportWidth = $(document.body).width();
+            var viewportHeight = $(document.body).height();
+
+            this.gl = timotuominen.gl.glUtils.initGL($("#webgl")[0]);
+            this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+            this.gl.clearDepth(1.0);
+            this.gl.viewport(0, 0, viewportWidth, viewportHeight);
+            this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
+
+
+        });
+        
+    </script>
+
+</head>
+<body>
+    <canvas id="webgl"></canvas>
+</body>
+</html>
