@@ -5,8 +5,8 @@ timotuominen.views.glListObject = c0mposer.create(
         vertexShaderCode: "attribute vec3 position;\nuniform mat4 uMVMatrix;\nuniform mat4 uPMatrix;\nvoid main(void) {\n\tgl_Position = uPMatrix*uMVMatrix*vec4(position.x, position.y, 0.0, 1.0);\n}",
         shader: null,
         init: function () {
-            this.el[0].width = 500;
-            this.el[0].height = 500;
+            this.el[0].width = this.el.width();
+            this.el[0].height = this.el.height();
             this.gl = this.el[0].getContext("experimental-webgl");
             this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
             this.viewportWidth = this.el[0].width;
@@ -31,7 +31,8 @@ timotuominen.views.glListObject = c0mposer.create(
             this.gl.uniformMatrix4fv(this.gl.getUniformLocation(this.shader, "uPMatrix"), false, matrix);
         },
         createPlane: function () {
-            var vertices = new Float32Array([ -.5,-.5, .5,-.5, -.5,.5, .5,-.5, .5,.5, -.5,.5]);
+            //var vertices = new Float32Array([ -.5,-.5, .5,-.5, -.5,.5, .5,-.5, .5,.5, -.5,.5]);
+            var vertices = new Float32Array([ -1.0,-1.0, 1.0,-1.0, -1.0,1.0, 1.0,-1.0, 1.0,1.0, -1.0,1.0]);
             this.mQuadVBO = this.gl.createBuffer();
             this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.mQuadVBO);
             this.gl.bufferData(this.gl.ARRAY_BUFFER, vertices, this.gl.STATIC_DRAW);
@@ -61,7 +62,7 @@ timotuominen.views.glListObject = c0mposer.create(
                 this.setShaderMVMatrix(m);
 
                 mat4.identity(m);
-                mat4.translate(m, [item.elLeft/w, .5-(item.elTop + item.elHeight/2)/h, 0]);
+                mat4.translate(m, [item.elLeft/w, 1.0-2.0*(item.elTop + item.elHeight/2)/h, 0]);
                 this.setShaderPMatrix(m);
 
                 this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
