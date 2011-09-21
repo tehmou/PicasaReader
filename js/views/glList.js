@@ -4,17 +4,19 @@ timotuominen.views.glListObject = c0mposer.create(
         vertexShaderCode: "attribute vec3 position;\nuniform mat4 uMVMatrix;\nuniform mat4 uPMatrix;\nvoid main(void) {\n\tgl_Position = uPMatrix*uMVMatrix*vec4(position.x, position.y, 0.0, 1.0);\n}",
         shader: null,
         init: function () {
-            this.el[0].width = this.el.width();
-            this.el[0].height = this.el.height();
             this.gl = this.el[0].getContext("experimental-webgl");
-            this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
-            this.viewportWidth = this.el[0].width;
-            this.viewportHeight = this.el[0].height;
+            this.gl.clearColor(0.0, 0.0, 0.0, 0.0);
             this.createShader();
             this.createPlane();
 
             this.renderLoop = _.bind(this.renderLoop, this);
             this.renderLoop();
+        },
+        onResize: function () {
+            this.el[0].width = this.el.width();
+            this.el[0].height = this.el.height();
+            this.viewportWidth = this.el[0].width;
+            this.viewportHeight = this.el[0].height;
         },
         createShader: function () {
             this.shader = timotuominen.gl.glShaderUtils.createShader(this.gl, this.fragmentShaderCode, this.vertexShaderCode);
@@ -70,7 +72,7 @@ timotuominen.views.glListObject = c0mposer.create(
                     this.setShaderMVMatrix(m);
 
                     mat4.identity(m);
-                    mat4.translate(m, [item.elLeft/w, 1.0-2.0*(item.elTop + item.elHeight/2)/h, 0]);
+                    mat4.translate(m, [2.0*item.elLeft/w, 1.0-2.0*(item.elTop + item.elHeight/2)/h, 0]);
                     this.setShaderPMatrix(m);
 
                     this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
