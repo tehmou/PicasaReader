@@ -1,0 +1,9 @@
+attribute vec3 position;
+uniform mat4 uMVMatrix;
+uniform mat4 uPMatrix;
+varying vec2 picturePosition;
+
+void main(void) {
+    picturePosition = position.st;
+    gl_Position = uPMatrix*uMVMatrix*vec4(position.x, position.y, 0.0, 1.0);
+}

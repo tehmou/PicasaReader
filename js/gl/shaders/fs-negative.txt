@@ -1,0 +1,20 @@
+#ifdef GL_ES
+precision highp float;
+#endif
+
+uniform vec2 resolution;
+uniform sampler2D tex0;
+uniform float ratio;
+varying vec2 picturePosition;
+
+void main(void) {
+    vec2 p = picturePosition.xy;
+    vec4 o = texture2D(tex0,vec2(p.s*.5+.5,.5-p.t*.5));
+
+    float b = clamp(ratio*1.2, 0.0, 1.0);
+    float g = clamp((ratio-0.2)*2.0, 0.0, 1.0);
+    float r = clamp((ratio-0.4)*1.4, 0.0, 1.0);
+    float a = clamp(0.2+ratio*2.0, 0.0, 1.0);
+
+    gl_FragColor = vec4(1.0-o.x, 1.0-o.y, 1.0-o.z, 1.0);
+}

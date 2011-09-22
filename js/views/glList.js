@@ -1,45 +1,9 @@
 (function () {
-    var simpleFragmentShaderCode = "" +
-            "#ifdef GL_ES\n" +
-            "precision highp float;\n" +
-            "#endif\n\n" +
-            "void main(void) {\n" +
-            "     gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);\n" +
-            "}",
-        complexFragmentShaderCode = "" +
-            "#ifdef GL_ES\n" +
-            "precision highp float;\n" +
-            "#endif\n\n" +
 
-            "uniform vec2 resolution;\n" +
-            "uniform sampler2D tex0;\n" +
-            "uniform float ratio;\n" +
-            "varying vec2 picturePosition;\n\n" +
-
-            "void main(void) {\n" +
-            "    vec2 p = picturePosition.xy;\n" +
-            "    vec4 o = texture2D(tex0,vec2(p.s*.5+.5,.5-p.t*.5));\n\n" +
-
-            "    float b = clamp(ratio*1.2, 0.0, 1.0);\n" +
-            "    float g = clamp((ratio-0.2)*2.0, 0.0, 1.0);\n" +
-            "    float r = clamp((ratio-0.4)*1.4, 0.0, 1.0);\n" +
-            "    float a = clamp(0.2+ratio*2.0, 0.0, 1.0);\n\n" +
-
-            "    gl_FragColor = vec4(1.0-r*(1.0-o.x), 1.0-g*(1.0-o.y), 1.0-b*(1.0-o.z), r);\n" +
-            "}",
-        simpleVertexShaderCode = "" +
-            "attribute vec3 position;\n" +
-            "uniform mat4 uMVMatrix;\n" +
-            "uniform mat4 uPMatrix;\n" +
-            "varying vec2 picturePosition;\n\n" +
-            "void main(void) {\n" +
-            "    picturePosition = position.st;" +
-            "    gl_Position = uPMatrix*uMVMatrix*vec4(position.x, position.y, 0.0, 1.0);\n" +
-            "}";
 timotuominen.views.glListObject = c0mposer.create(
      {
-        fragmentShaderCode: complexFragmentShaderCode,
-        vertexShaderCode: simpleVertexShaderCode,
+        fragmentShaderName: "fs-negative",
+        vertexShaderName: "vs-default",
 
         shader: null,
         init: function () {
@@ -58,10 +22,20 @@ timotuominen.views.glListObject = c0mposer.create(
             this.viewportHeight = this.el[0].height;
         },
         createShader: function () {
-            this.shader = timotuominen.gl.glShaderUtils.createShader(this.gl, this.fragmentShaderCode, this.vertexShaderCode);
-            this.gl.useProgram(this.shader);
-            this.gl.enableVertexAttribArray(this.gl.getAttribLocation(this.shader, "position"));
-            this.resetShaderMatrices();
+            $.ajax("js/gl/shaders/" + this.fragmentShaderName + ".txt", {
+                dataType: "text",
+                success: _.bind(function (fsCode) {
+                    $.ajax("js/gl/shaders/" + this.vertexShaderName + ".txt", {
+                        dataType: "text",
+                        success: _.bind(function (vsCode) {
+                            this.shader = timotuominen.gl.glShaderUtils.createShader(this.gl, fsCode, vsCode);
+                            this.gl.useProgram(this.shader);
+                            this.gl.enableVertexAttribArray(this.gl.getAttribLocation(this.shader, "position"));
+                            this.resetShaderMatrices();
+                        }, this)
+                    })
+                }, this)
+            });
         },
         resetShaderMatrices: function () {
             var m = mat4.create();
@@ -120,7 +94,7 @@ timotuominen.views.glListObject = c0mposer.create(
                     this.setShaderPMatrix(m);
 
                     this.gl.uniform2f(this.gl.getUniformLocation(this.shader, "resolution"), item.elWidth, item.elHeight);
-                    this.gl.uniform1f(this.gl.getUniformLocation(this.shader, "ratio"), .5);
+                    this.gl.uniform1f(this.gl.getUniformLocation(this.shader, "ratio"), 0);
                     this.gl.activeTexture(this.gl.TEXTURE0);
                     this.gl.bindTexture(this.gl.TEXTURE_2D, item.texture);
                     this.gl.uniform1i(this.gl.getUniformLocation(this.shader, "tex0"), 0);
