@@ -7,6 +7,8 @@ timotuominen.views.glListObject = c0mposer.create(
 
         shader: null,
         init: function () {
+            this.onMouseMove = _.bind(this.onMouseMove, this);
+            this.el.mousemove(this.onMouseMove);
             this.gl = this.el[0].getContext("experimental-webgl");
             this.gl.enable(this.gl.TEXTURE_2D);
             this.gl.clearColor(0.0, 0.0, 0.0, 0.0);
@@ -102,6 +104,9 @@ timotuominen.views.glListObject = c0mposer.create(
                     this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
                 }
             }
+        },
+        onMouseMove: function (event) {
+
         }
     },
     timotuominen.views.listBaseObject
