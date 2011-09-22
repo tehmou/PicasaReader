@@ -3,7 +3,7 @@ timotuominen.gl.glTextureUtils = {
     {
         var texture = gl.createTexture();
         var image = new Image();
-        image.onload = _.bind(function() { this.createGLTexture(gl, image, texture) }, this);
+        image.onload = _.bind(function() { this.createGLTexture(gl, image, texture); }, this);
         image.src = url;
         return texture;
     },
