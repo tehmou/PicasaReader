@@ -11,5 +11,7 @@ void main(void) {
     vec2 p = picturePosition.xy;
     vec4 o = texture2D(tex0,vec2(p.s*.5+.5,.5-p.t*.5));
     vec4 negative = vec4(1.0-o.x, 1.0-o.y, 1.0-o.z, 1.0);
-    gl_FragColor = ratio*negative + (1.0-ratio)*o;
+    float v = (negative.x+negative.y+negative.z)/3.0;
+    vec4 sepia = vec4(0.97*v, 0.93*v, 0.89*v, 1.0);
+    gl_FragColor = ratio*sepia + (1.0-ratio)*negative;
 }

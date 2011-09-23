@@ -1,31 +1,15 @@
 timotuominen.gl.glShaderUtils = {
     createShader: function (gl, fragmentShaderCode, vertexShaderCode)
     {
-        var infoLog;
+        var tmpProgram = gl.createProgram(),
+            vs, fs;
 
-        var tmpProgram = gl.createProgram();
-
-        var vs = gl.createShader(gl.VERTEX_SHADER);
-        var fs = gl.createShader(gl.FRAGMENT_SHADER);
-
-        gl.shaderSource(vs, vertexShaderCode);
-        gl.shaderSource(fs, fragmentShaderCode);
-
-        gl.compileShader(vs);
-        gl.compileShader(fs);
-
-        if (!gl.getShaderParameter(vs, gl.COMPILE_STATUS))
-        {
-            infoLog = gl.getShaderInfoLog(vs);
+        try {
+            vs = this.createVS(gl, vertexShaderCode);
+            fs = this.createFS(gl, fragmentShaderCode);
+        } catch (e) {
             gl.deleteProgram( tmpProgram );
-            throw "VS ERROR: " + infoLog;
-        }
-
-        if (!gl.getShaderParameter(fs, gl.COMPILE_STATUS))
-        {
-            infoLog = gl.getShaderInfoLog(fs);
-            gl.deleteProgram( tmpProgram );
-            throw "FS ERROR: " + infoLog;
+            throw e;
         }
 
         gl.attachShader(tmpProgram, vs);
@@ -37,5 +21,27 @@ timotuominen.gl.glShaderUtils = {
         gl.linkProgram(tmpProgram);
 
         return tmpProgram;
+    },
+
+    createVS: function (gl, code) {
+        var vs = gl.createShader(gl.VERTEX_SHADER);
+        gl.shaderSource(vs, code);
+        gl.compileShader(vs);
+        if (!gl.getShaderParameter(vs, gl.COMPILE_STATUS))
+        {
+            throw "VS ERROR: " + gl.getShaderInfoLog(vs);
+        }
+        return vs;
+    },
+
+    createFS: function (gl, code) {
+        var fs = gl.createShader(gl.FRAGMENT_SHADER);
+        gl.shaderSource(fs, code);
+        gl.compileShader(fs);
+        if (!gl.getShaderParameter(fs, gl.COMPILE_STATUS))
+        {
+            throw "FS ERROR: " + gl.getShaderInfoLog(fs);
+        }
+        return fs;
     }
 };
