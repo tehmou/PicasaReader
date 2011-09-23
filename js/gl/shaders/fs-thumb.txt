@@ -19,5 +19,5 @@ void main(void) {
     float py = .5*(1.0+p.y)*resolution.y;
     float border = (px<=borderWidth||py<=borderWidth||px>=resolution.x-borderWidth||py>=resolution.y-borderWidth)?1.0:0.0;
 
-    gl_FragColor = clamp(ratio*sepia+(1.0-ratio)*(negative+border), 0.0, 1.0);
+    gl_FragColor = clamp((1.0-ratio)*(sepia-border)+ratio*(negative+border), 0.0, 1.0);
 }

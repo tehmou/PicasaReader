@@ -98,6 +98,8 @@ timotuominen.views.glListObject = c0mposer.create({
                     if (item.elOpacity === 0) {
                         continue;
                     }
+                    item.activityRatio += item.mouseOver ? 0.34 : -0.08;
+                    item.activityRatio = Math.min(1.0, Math.max(0.0, item.activityRatio));
                     var sx = item.elWidth/w,
                         sy = item.elHeight/h;
 
@@ -110,7 +112,7 @@ timotuominen.views.glListObject = c0mposer.create({
                     this.setShaderPMatrix(m);
 
                     this.gl.uniform2f(this.gl.getUniformLocation(this.shader, "resolution"), item.elWidth, item.elHeight);
-                    this.gl.uniform1f(this.gl.getUniformLocation(this.shader, "ratio"), item.mouseOver ? 0.5 : 1.0);
+                    this.gl.uniform1f(this.gl.getUniformLocation(this.shader, "ratio"), item.activityRatio);
                     this.gl.activeTexture(this.gl.TEXTURE0);
                     this.gl.bindTexture(this.gl.TEXTURE_2D, item.texture);
                     this.gl.uniform1i(this.gl.getUniformLocation(this.shader, "tex0"), 0);
