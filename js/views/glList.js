@@ -91,6 +91,8 @@ timotuominen.views.glListObject = c0mposer.create({
                     if (item.texture === undefined) {
                         if (item.model.attributes.hasOwnProperty("thumbnailUrl")) {
                             item.texture = timotuominen.gl.glTextureUtils.loadImageTexture(this.gl, item.model.get("thumbnailUrl"));
+                        } else {
+                            continue;
                         }
                     }
                     if (item.elOpacity === 0) {
@@ -145,6 +147,9 @@ timotuominen.views.glListObject = c0mposer.create({
             var item = this.getItemAt(this.mouseX, this.mouseY);
             if (item) {
                 item.mouseOver = true;
+                this.el.css("cursor", "pointer");
+            } else {
+                this.el.css("cursor", "default");
             }
         },
         getItemAt: function (x, y) {
@@ -154,7 +159,7 @@ timotuominen.views.glListObject = c0mposer.create({
             for (var i = 0; i < this.items.length; i++) {
                 var item = this.items[i];
                 var l = item.elLeft + this.halfW - item.elWidth / 2.0;
-                if (item.elOpacity !== 0 &&
+                if (item.elOpacity !== 0 && item.texture &&
                     x > l && x < l + item.elWidth &&
                     y > item.elTop && y < item.elTop + item.elHeight) {
                     return item;

@@ -74,28 +74,40 @@
         };
 
         $(function () {
+            setTimeout(function () {
+                window.scrollTo(0, 105);
+            }, 200);
+
+            var listEl;
+            if (galleryOptions.mode === "css") {
+                listEl = $("<div class='list-container'></div>");
+            }  else {
+                listEl = $("<canvas class='webgl-list-container'></canvas>");
+            }
+            $("body").append(listEl);
             _.extend(galleryOptions, {
+                el: listEl,
                 displayEl: $("#image-wrapper"),
                 prepend: [
-                    new Backbone.Model(),
+                    //new Backbone.Model(),
                     new Backbone.Model(),
                     new Backbone.Model(),
                     new Backbone.Model()
                 ],
                 append: [
-                    new Backbone.Model(),
+                    //new Backbone.Model(),
                     new Backbone.Model(),
                     new Backbone.Model(),
                     new Backbone.Model()
                 ]
             });
 
-            timotuominen.init(_.extend({}, galleryOptions, { el: $("#list-container"), mode: "css" }));
-            timotuominen.init(_.extend({}, galleryOptions, { el: $("#webgl-list-container"), mode: "webgl" }));
 
-            //$("#settings-container")
-            //        .append("<a href='" + baseUrl + "?mode=css'>" + (galleryOptions.mode === "css" ? "[x]" : "[ ]") + " css</a>")
-            //        .append("<a href='" + baseUrl + "'>"+ (galleryOptions.mode === "webgl" ? "[x]" : "[ ]") + " webgl</a>")
+            timotuominen.init(galleryOptions);
+
+            $("#settings-container")
+                    .append("<a href='" + timotuominen.utils.baseUrl + "?mode=css'>" + (galleryOptions.mode === "css" ? "[x]" : "[ ]") + " css</a>")
+                    .append("<a href='" + timotuominen.utils.baseUrl + "'>"+ (galleryOptions.mode === "webgl" ? "[x]" : "[ ]") + " webgl</a>")
         });
 
         function initDebugFeed (data) {
@@ -103,7 +115,8 @@
             _.each(data.feed.entry, function (entry) {
                 feed.push({
                     thumbnailUrl: "cache/thumb/" + _.last(entry["media$group"]["media$thumbnail"][1].url.split("/")),
-                    imageUrl: "cache/full/" + _.last(entry.content.src.split("/"))
+                    imageUrl: entry.content.src
+                    //imageUrl: "cache/full/" + _.last(entry.content.src.split("/"))
                 })
             });
         }
@@ -129,11 +142,7 @@ initDebugFeed({"version":"1.0","encoding":"UTF-8","feed":{"xmlns":"http://www.w3
     </script>
 </head>
 <body>
-    <div id="image-wrapper">
-
-    </div>
-    <canvas id="webgl-list-container"></canvas>
-    <div id="list-container"></div>
+    <div id="image-wrapper"></div>
     <div id="settings-container"></div>
 </body>
 </html>
