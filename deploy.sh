@@ -1,1 +1,1 @@
-scp -r * timotuominen@timotuominen.fi@timotuominen.fi:mainwebsite_html
+scp -r * ttuominen@timotuominen.fi@timotuominen.fi:mainwebsite_html
