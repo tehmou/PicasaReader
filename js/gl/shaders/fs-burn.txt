@@ -14,7 +14,7 @@ void main(void) {
     vec4 o0 = texture2D(tex0,texCoord);
     vec4 o1 = texture2D(tex1,texCoord);
 
-    float burnRatio = (o1.x-ratio/.7)+.3;
+    float burnRatio = (o1.x-ratio/.75)+.3;
 
     float alpha = clamp(burnRatio/.05,0.,1.);
 
