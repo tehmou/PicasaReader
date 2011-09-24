@@ -83,10 +83,13 @@
             } else {
                 galleryOptions.mode = Detector.webgl ? "webgl" : "css"; 
             }
-            if (galleryOptions.mode === "css") {
-                listEl = $("<div class='list-container'></div>");
-            }  else {
+            if (galleryOptions.mode === "webgl") {
+                if (!Detector.webgl) {
+                    $("#error-container").html("It appears your browser does not support WebGL. Please download i.e. <a href='http://www.google.com/chrome'>Google Chrome</a> or use the <a href='" + timotuominen.utils.baseUrl + "'>plain version</a> of the site.");
+                }
                 listEl = $("<canvas class='webgl-list-container'></canvas>");
+            }  else {
+                listEl = $("<div class='list-container'></div>");
             }
             $("body").append(listEl);
             _.extend(galleryOptions, {
@@ -148,5 +151,6 @@ initDebugFeed({"version":"1.0","encoding":"UTF-8","feed":{"xmlns":"http://www.w3
 <body>
     <div id="image-wrapper"></div>
     <div id="settings-container"></div>
+    <h2 id="error-container"></h2>
 </body>
 </html>
