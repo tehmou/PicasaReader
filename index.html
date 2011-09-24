@@ -6,11 +6,11 @@
     <link href="css.less" rel="stylesheet/less" type="text/css">
 
     <script type="text/javascript" src="lib/jquery-1.6.1.js"></script>
-    <script type="text/javascript" src="lib/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="lib/less-1.0.41.min.js"></script>
     <script type="text/javascript" src="lib/underscore.js"></script>
     <script type="text/javascript" src="lib/backbone.js"></script>
     <script type="text/javascript" src="lib/RequestAnimationFrame.js"></script>
+    <script type="text/javascript" src="lib/Detector.js"></script>
     <script type="text/javascript" src="lib/c0mposer-0.0.2.js"></script>
     <script type="text/javascript" src="lib/jsfacer.js"></script>
     <script type="text/javascript" src="lib/glMatrix-0.9.5.min.js"></script>
@@ -57,7 +57,6 @@
         var galleryOptions = {
             feed: [],
             orientation: "vertical",
-            mode: timotuominen.utils.urlVars.hasOwnProperty("mode") ? timotuominen.utils.urlVars.mode : "webgl",
             touchMode: "desktop",
             thumbnailWidth: 144,
             thumbnailHeight: 96,
@@ -79,6 +78,11 @@
             }, 200);
 
             var listEl;
+            if (timotuominen.utils.urlVars.hasOwnProperty("mode")) {
+                galleryOptions.mode = timotuominen.utils.urlVars.mode;
+            } else {
+                galleryOptions.mode = Detector.webgl ? "webgl" : "css"; 
+            }
             if (galleryOptions.mode === "css") {
                 listEl = $("<div class='list-container'></div>");
             }  else {
@@ -107,7 +111,7 @@
 
             $("#settings-container")
                     .append("<a href='" + timotuominen.utils.baseUrl + "?mode=css'>" + (galleryOptions.mode === "css" ? "[x]" : "[ ]") + " css</a>")
-                    .append("<a href='" + timotuominen.utils.baseUrl + "'>"+ (galleryOptions.mode === "webgl" ? "[x]" : "[ ]") + " webgl</a>")
+                    .append("<a href='" + timotuominen.utils.baseUrl + "?mode=webgl'>"+ (galleryOptions.mode === "webgl" ? "[x]" : "[ ]") + " webgl</a>")
         });
 
         function initDebugFeed (data) {
