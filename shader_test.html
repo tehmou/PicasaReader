@@ -18,7 +18,7 @@
         #content {
             position: absolute;
             width: 100px;
-            height: 200%;
+            height: 400%;
             text-align: right;
         }
 
@@ -63,7 +63,7 @@
         var renderer = ({
             el: $("#webgl-canvas"),
             imageUrl: "cache/full/IMG_2273.JPG",
-            fragmentShaderName: "fs-thumb",
+            fragmentShaderName: "fs-negative",
             vertexShaderName: "vs-default",
             shader: null,
 
@@ -172,15 +172,13 @@
                 }
                 r = Math.min(1.0, Math.max(0.0, (i - screenHeight/2)/(bodyHeight - screenHeight -20)));
                 item = $("<span>" + Math.floor(100*r) + "</span>")
-                //var item = $("<span></span>");
                 el.append(item);
-                item.css("opacity", r);//"rgba(1.0, 0, 0, 1.0)");
-                //item.css("background-color", "rgba("+r+","+r+","+r+",1.0)");
+                item.css("opacity", r);
             }
         }
 
         function updateScroll(event) {
-            renderer.ratio = document.body.scrollTop/document.body.clientHeight;
+            renderer.ratio = document.body.scrollTop/($("#content").height()-document.body.clientHeight);
         }
 
         $(window).resize(updateSize)
