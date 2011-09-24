@@ -10,12 +10,17 @@ varying vec2 picturePosition;
 
 void main(void) {
     vec2 p = picturePosition.xy;
-    vec4 o = texture2D(tex0,vec2(p.s*.5+.5,.5-p.t*.5));
+    vec2 texCoord = vec2(p.s*.5+.5,.5-p.t*.5);
+    vec4 o0 = texture2D(tex0,texCoord);
+    vec4 o1 = texture2D(tex1,texCoord);
 
-    float b = clamp(ratio*1.2, 0.0, 1.0);
-    float g = clamp((ratio-0.2)*2.0, 0.0, 1.0);
-    float r = clamp((ratio-0.4)*1.4, 0.0, 1.0);
-    float a = clamp(0.2+ratio*2.0, 0.0, 1.0);
+    float burnRatio = (o1.x-ratio/.7)+.3;
 
-    gl_FragColor = vec4(1.0-o.x, 1.0-o.y, 1.0-o.z, 1.0);
+    float alpha = clamp(burnRatio/.04,0.,1.);
+
+    float overlayColorMagnitude = 1.0-clamp(burnRatio/0.3,0.0,1.0);
+    vec3 overlayColor = vec3(-.3*overlayColorMagnitude,-.7*overlayColorMagnitude,-1.0);
+    vec3 colorAdjust = overlayColorMagnitude*overlayColor;
+
+    gl_FragColor = vec4(o0.xyz+colorAdjust, alpha);
 }
