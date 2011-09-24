@@ -4,6 +4,7 @@ precision highp float;
 
 uniform vec2 resolution;
 uniform sampler2D tex0;
+uniform sampler2D tex1;
 uniform float ratio;
 varying vec2 picturePosition;
 
