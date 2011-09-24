@@ -6,13 +6,22 @@
     <style type="text/css">
 
         body {
+            position: absolute;
             margin: 0;
             padding: 0;
+            width: 100%;
+            height: 100%;
             background: #eee;
+        }
+
+        #content {
+            position: absolute;
+            width: 100px;
+            height: 200%;
         }
         
         #webgl-canvas {
-            position: absolute;
+            position: fixed;
             width: 900px;
             height: 600px;
             left: 50%;
@@ -36,7 +45,7 @@
 
     $(function () {
 
-        ({
+        var renderer = ({
             el: $("#webgl-canvas"),
             imageUrl: "cache/full/IMG_2273.JPG",
             fragmentShaderName: "fs-thumb",
@@ -126,18 +135,36 @@
                     this.gl.enableVertexAttribArray(this.gl.getAttribLocation(this.shader, "position"));
                 }
                 this.gl.uniform2f(this.gl.getUniformLocation(this.shader, "resolution"), w, h);
-                this.gl.uniform1f(this.gl.getUniformLocation(this.shader, "ratio"), 0.5);
+                this.gl.uniform1f(this.gl.getUniformLocation(this.shader, "ratio"), this.ratio);
                 this.gl.activeTexture(this.gl.TEXTURE0);
                 this.gl.bindTexture(this.gl.TEXTURE_2D, this.texture);
                 this.gl.uniform1i(this.gl.getUniformLocation(this.shader, "tex0"), 0);
                 this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
             }
-        }).init();
+        });
+
+
+        function updateSize() {
+
+        }
+
+        function updateScroll(event) {
+            renderer.ratio = document.body.scrollTop/document.body.clientHeight;
+        }
+
+        $(window).resize(updateSize)
+        $(window).scroll(updateScroll);
+
+        updateSize();
+        updateScroll();
+        renderer.init();
+
     });
 
     </script>
 
     <body>
+        <div id="content"></div>
         <canvas id="webgl-canvas"></canvas>
     </body>
 </html>
