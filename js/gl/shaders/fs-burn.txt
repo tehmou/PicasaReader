@@ -16,11 +16,12 @@ void main(void) {
 
     float burnRatio = (o1.x-ratio/.7)+.3;
 
-    float alpha = clamp(burnRatio/.04,0.,1.);
+    float alpha = clamp(burnRatio/.05,0.,1.);
 
     float overlayColorMagnitude = 1.0-clamp(burnRatio/0.3,0.0,1.0);
+    
     vec3 overlayColor = vec3(-.3*overlayColorMagnitude,-.7*overlayColorMagnitude,-1.0);
     vec3 colorAdjust = overlayColorMagnitude*overlayColor;
 
-    gl_FragColor = vec4(o0.xyz+colorAdjust, alpha);
+    gl_FragColor = vec4(o0.xyz+colorAdjust+(1.0-alpha), alpha);
 }
