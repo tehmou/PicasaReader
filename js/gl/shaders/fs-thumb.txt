@@ -12,12 +12,13 @@ void main(void) {
     vec4 o = texture2D(tex0,vec2(p.s*.5+.5,.5-p.t*.5));
     vec4 negative = vec4(1.0-o.x, 1.0-o.y, 1.0-o.z, 1.0);
     float v = (negative.x+negative.y+negative.z)/3.0;
-    vec4 sepia = vec4(0.97*v, 0.93*v, 0.89*v, 1.0);
+    vec4 sepia = vec4(0.97*v, 0.93*v, 0.89*v, 0.7);
 
     float borderWidth = 1.0;
     float px = .5*(1.0+p.x)*resolution.x;
     float py = .5*(1.0+p.y)*resolution.y;
     float border = (px<=borderWidth||py<=borderWidth||px>=resolution.x-borderWidth||py>=resolution.y-borderWidth)?1.0:0.0;
 
-    gl_FragColor = clamp((1.0-ratio)*(sepia-border)+ratio*(negative+border), 0.0, 1.0);
+    float scaledRatio = ratio*0.5;
+    gl_FragColor = clamp((1.0-scaledRatio)*(sepia-border)+scaledRatio*(negative+border), 0.0, 1.0);
 }

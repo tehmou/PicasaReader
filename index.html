@@ -34,9 +34,9 @@
     <script type="text/javascript" src="js/views/glList.js"></script>
     <script type="text/javascript" src="js/views/domList.js"></script>
 
-    <script type="text/javascript" src="js/views/item/listItemBase.js"></script>'
-    <script type="text/javascript" src="js/views/item/domListItem.js"></script>'
-    <script type="text/javascript" src="js/views/item/glListItem.js"></script>'
+    <script type="text/javascript" src="js/views/item/listItemBase.js"></script>
+    <script type="text/javascript" src="js/views/item/domListItem.js"></script>
+    <script type="text/javascript" src="js/views/item/glListItem.js"></script>
 
     <script type="text/javascript" src="js/views/transformations/wheeler.js"></script>
     <script type="text/javascript" src="js/views/transformations/conveyor.js"></script>
@@ -73,10 +73,6 @@
         };
 
         $(function () {
-            setTimeout(function () {
-                window.scrollTo(0, 105);
-            }, 200);
-
             var listEl;
             if (timotuominen.utils.urlVars.hasOwnProperty("mode")) {
                 galleryOptions.mode = timotuominen.utils.urlVars.mode;
@@ -99,7 +95,10 @@
                     //new Backbone.Model(),
                     new Backbone.Model(),
                     new Backbone.Model(),
-                    new Backbone.Model()
+                    new Backbone.Model({
+                        thumbnailUrl: "images/about-01.png",
+                        htmlContent: $("#about-me-tmpl").html()
+                    })
                 ],
                 append: [
                     //new Backbone.Model(),
@@ -152,5 +151,11 @@ initDebugFeed({"version":"1.0","encoding":"UTF-8","feed":{"xmlns":"http://www.w3
     <div id="image-wrapper"></div>
     <div id="settings-container"></div>
     <h2 id="error-container"></h2>
+
+    <script id="about-me-tmpl" type="text/html">
+        <div class="about-me">
+            <h1>Moi!</h1>
+        </div>
+    </script>
 </body>
 </html>

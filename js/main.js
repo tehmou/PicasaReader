@@ -29,7 +29,11 @@ timotuominen.init = function (options) {
     }
 
     function itemClickHandler(item) {
-        imageDisplay.bindToModel(item);
+        if (item.attributes.hasOwnProperty("imageUrl")) {
+            imageDisplay.bindToModel(item);
+        } else if (item.attributes.hasOwnProperty("htmlContent")) {
+            displayEl.html(item.get("htmlContent"));
+        }
     }
 
     function start() {
