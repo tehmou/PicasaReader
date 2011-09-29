@@ -91,6 +91,7 @@
             _.extend(galleryOptions, {
                 el: listEl,
                 displayEl: $("#image-wrapper"),
+                htmlContentEl: $("#content-wrapper"),
                 prepend: [
                     //new Backbone.Model(),
                     new Backbone.Model(),
@@ -149,12 +150,25 @@ initDebugFeed({"version":"1.0","encoding":"UTF-8","feed":{"xmlns":"http://www.w3
 </head>
 <body>
     <div id="image-wrapper"></div>
+    <div id="content-wrapper"></div>
     <div id="settings-container"></div>
     <h2 id="error-container"></h2>
 
     <script id="about-me-tmpl" type="text/html">
         <div class="about-me">
-            <h1>Moi!</h1>
+            <img src="cache/full/IMG_1937.JPG"/>
+            <div class="intro-container">
+                <p>In a mere thirty seconds I had decided to leave my home country for a project abroad. Never an easy decision, but sometimes you get this feeling... feeling that, in fact, not making a certain choice can only end up in regret. At that moment there is no decision to be made anymore.</p>
+            </div>
+            <div class="info-container">
+                <div><span class="label">name</span><span class="info">Timo Tuominen</span></div>
+                <div><span class="label">country of origin</span><span class="info">Finland</span></div>
+                <div><span class="label">current location</span><span class="info">Berlin, Germany</span></div>
+                <div><span class="label">employer</span><span class="info"><a href="http://www.futurice.com/">Futurice GmbH</a></span></div>
+                <div><span class="label">languages</span><span class="info">English, Finnish, <span class="small">German, Swedish</span></span></div>
+                <div><span class="label">keywords</span><span class="info">photography, programming, design, user interfaces, javascript, UI architecture, MVC, HTML5, Web&nbsp;1.0-3.0</span></div>
+                <div><span class="label">links</span><span class="info"><a href="http://github.com/tehmou/">github</a>, <a href="http://twitter.com/tehmou">twitter</a></span></div>
+            </div>
         </div>
     </script>
 </body>

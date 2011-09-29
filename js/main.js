@@ -9,6 +9,7 @@ jsFacer.assert(timotuominen.views.glListObject, "iView");
 
 timotuominen.init = function (options) {
     var displayEl = options.displayEl,
+        htmlContentEl = options.htmlContentEl,
         feed = options.feed,
         prependModels = options.prepend,
         appendModels = options.append;
@@ -30,14 +31,16 @@ timotuominen.init = function (options) {
 
     function itemClickHandler(item) {
         if (item.attributes.hasOwnProperty("imageUrl")) {
+            htmlContentEl.html("");
             imageDisplay.bindToModel(item);
         } else if (item.attributes.hasOwnProperty("htmlContent")) {
-            displayEl.html(item.get("htmlContent"));
+            displayEl.html("");
+            htmlContentEl.html(item.get("htmlContent"));
         }
     }
 
     function start() {
-        itemClickHandler(entries.at(prependModels.length));
+        itemClickHandler(entries.at(prependModels.length-1));
     }
 
     createModels();
