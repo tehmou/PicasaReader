@@ -16,7 +16,9 @@ timotuominen.views.glListObject = c0mposer.create({
 
             this.gl = this.el[0].getContext("experimental-webgl");
             this.gl.enable(this.gl.TEXTURE_2D);
-            this.gl.clearColor(0.0, 0.0, 0.0, 0.0);
+            this.gl.enable(this.gl.BLEND);
+            this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
+
             this.createShader();
             this.createPlane();
             this.renderLoop = _.bind(this.renderLoop, this);
