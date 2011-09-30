@@ -40,7 +40,7 @@ timotuominen.init = function (options) {
     }
 
     function start() {
-        itemClickHandler(entries.at(prependModels.length-1));
+        itemClickHandler(entries.at(prependModels.length));
     }
 
     createModels();
