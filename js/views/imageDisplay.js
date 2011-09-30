@@ -15,7 +15,13 @@ timotuominen.views.imageDisplay = {
 
         var image = new Image();
         image.onload = _.bind(function() {
-            this.el.prepend(image);
+            if (this.model.attributes.hasOwnProperty("htmlContent")) {
+                this.el.prepend($(this.model.get("htmlContent")));
+                //$(this.el.children[0]).prepend(image);
+                $(this.el.children()[0]).prepend(image);
+            } else {
+                this.el.prepend(image);
+            }
             this.loading = false;
             this.changeRatio = 0.0;
             this.render();

@@ -50,13 +50,70 @@ a {
     bottom: 10px;
     left: 10px;
     right: 220px;
-}
 
-#image-wrapper img {
-    position: absolute;
-    border: 1px solid #eee;
-    max-height: 100%;   
-    max-width: 100%;
+    img {
+        position: absolute;
+        border: 1px solid #eee;
+        max-height: 100%;
+        max-width: 100%;
+    }
+
+
+    .about-me {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        img {
+            position: relative;
+            float: left;
+            height: 100%;
+            max-height: 1067px;
+            border: 1px solid white;
+            margin-right: 1.0rem;
+        }
+
+        .intro-container {
+            max-width: 60.0rem;
+            margin-top: 0.2rem;
+            margin-bottom: 2.4rem;
+
+            p {
+                font-family: "Adobe Garamond", "Times New Roman", Times, serif;
+                font-style: italic;
+                font-size: 0.8rem;
+                margin-top: 0;
+            }
+        }
+
+        .info-container {
+            div {
+                margin-bottom: 0.6rem;
+            }
+        }
+
+        .label {
+            display: table-cell;
+            color: #aaa;
+            font-size: 0.8rem;
+            padding-right: 0.2rem;
+            font-variant: small-caps;
+            width: 8rem;
+            text-align: right;
+        }
+
+        .info {
+            max-width: 20.0rem;
+            display: table-cell;
+            line-height: 1.2rem;
+        }
+
+        .small {
+            font-size: 0.7rem;
+        }
+    }
 }
 
 #settings-container {
@@ -104,65 +161,5 @@ a {
                 }
             }
         }
-    }
-}
-
-#content-wrapper {
-    #image-wrapper();
-}
-
-.about-me {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    img {
-        float: left;
-        height: 100%;
-        max-height: 1067px;
-        border: 1px solid white;
-        margin-right: 1.0rem;
-    }
-
-
-    .intro-container {
-        max-width: 60.0rem;
-        margin-top: 0.2rem;
-        margin-bottom: 2.4rem;
-        
-        p {
-            font-family: "Adobe Garamond", "Times New Roman", Times, serif;
-            font-style: italic;
-            font-size: 0.8rem;
-            margin-top: 0;
-        }
-    }
-
-    .info-container {
-        div {
-            margin-bottom: 0.6rem;
-        }
-    }
-
-    .label {
-        display: table-cell;
-        color: #aaa;
-        font-size: 0.8rem;
-        padding-right: 0.2rem;
-        font-variant: small-caps;
-        width: 8rem;
-        text-align: right;
-    }
-
-    .info {
-        max-width: 20.0rem;
-        display: table-cell;
-        line-height: 1.2rem;
-    }
-
-    .small {
-        font-size: 0.7rem;
     }
 }
