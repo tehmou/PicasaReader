@@ -1,6 +1,10 @@
-mkdir deploy
-cp -r * deploy
-rm -rf deploy/original
-scp -r deploy/* ttuominen@timotuominen.fi@timotuominen.fi:mainwebsite_html
-rm -rf deploy
+TIME=$(date +%s)
+DEPLOY=../deploy$TIME
+echo $DEPLOY
+mkdir $DEPLOY
+cp -r * $DEPLOY
+rm -rf $DEPLOY/original
+rm -rf $DEPLOY/.git*
+scp -r $DEPLOY/* ttuominen@timotuominen.fi@timotuominen.fi:mainwebsite_html
+rm -rf $DEPLOY
 
