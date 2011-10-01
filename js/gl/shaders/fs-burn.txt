@@ -9,6 +9,11 @@ uniform sampler2D tex2;
 uniform float ratio;
 varying vec2 picturePosition;
 
+void addDistortion(vec2 delta, in vec2 pos, in sampler2D s, inout vec2 distort) {
+    distort = distort + delta*texture2D(s, pos+delta).x;
+    //distort = vec2(1.0, 1.0);
+}
+
 void main(void) {
     vec2 p = picturePosition.xy;
     vec2 texCoord = vec2(p.s*.5+.5,.5-p.t*.5);
@@ -18,12 +23,28 @@ void main(void) {
 
     float burnRatio = (o2.x-ratio/.75)+.3;
 
-    float alpha = clamp(burnRatio/.05,0.,1.);
+    float alpha = clamp(burnRatio/.05, 0.0, 1.0);
 
-    float overlayColorMagnitude = 1.0-clamp(burnRatio/0.3,0.0,1.0);
-    
+    float overlayColorMagnitude = 1.0-clamp(burnRatio/0.3, 0.0, 1.0);
     vec3 overlayColor = vec3(-.3*overlayColorMagnitude,-.7*overlayColorMagnitude,-1.0);
     vec3 colorAdjust = overlayColorMagnitude*overlayColor;
 
-    gl_FragColor = o1*(1.0-alpha) + vec4(o0.xyz+colorAdjust+(1.0-alpha), 1.0)*alpha;
+
+    vec2 distort = vec2(0.0);
+    float nx = (1.0-burnRatio)*30.0/resolution.x;
+    float ny = (1.0-burnRatio)*30.0/resolution.y;
+
+
+    //addDistortion(vec2(nx*10.0, ny*10.0), texCoord, tex2, distort);
+    addDistortion(vec2(-nx, -ny), texCoord, tex2, distort);
+    addDistortion(vec2(0.0, -ny), texCoord, tex2, distort);
+    addDistortion(vec2(nx, -ny), texCoord, tex2, distort);
+    addDistortion(vec2(nx, 0.0), texCoord, tex2, distort);
+    addDistortion(vec2(nx, ny), texCoord, tex2, distort);
+    addDistortion(vec2(0.0, ny), texCoord, tex2, distort);
+    addDistortion(vec2(-nx, ny), texCoord, tex2, distort);
+    addDistortion(vec2(-nx, 0.0), texCoord, tex2, distort);
+
+    vec4 base = vec4(texture2D(tex0, texCoord+distort).xyz, 1.0);//(alpha>0.0?1.0:0.0));
+    gl_FragColor = vec4(base.xyz+colorAdjust+(1.0-alpha), alpha);
 }
