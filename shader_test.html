@@ -62,7 +62,8 @@
         var renderer = ({
             el: $("#webgl-canvas"),
             image1Url: "images/IMG_2235.JPG",
-            image2Url: "images/burn2.png",
+            image2Url: "images/IMG_2273.JPG",
+            image3Url: "images/burn2.png",
             fragmentShaderName: "fs-burn",
             vertexShaderName: "vs-default",
             shader: null,
@@ -131,6 +132,7 @@
             createTextures: function () {
                 this.texture1 = timotuominen.gl.glTextureUtils.loadImageTexture(this.gl, this.image1Url);
                 this.texture2 = timotuominen.gl.glTextureUtils.loadImageTexture(this.gl, this.image2Url);
+                this.texture3 = timotuominen.gl.glTextureUtils.loadImageTexture(this.gl, this.image3Url);
             },
             renderLoop: function () {
                 requestAnimationFrame(this.renderLoop);
@@ -164,6 +166,10 @@
                 this.gl.activeTexture(this.gl.TEXTURE1);
                 this.gl.bindTexture(this.gl.TEXTURE_2D, this.texture2);
                 this.gl.uniform1i(this.gl.getUniformLocation(this.shader, "tex1"), 1);
+
+                this.gl.activeTexture(this.gl.TEXTURE2);
+                this.gl.bindTexture(this.gl.TEXTURE_2D, this.texture3);
+                this.gl.uniform1i(this.gl.getUniformLocation(this.shader, "tex2"), 2);
 
                 this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
             }
