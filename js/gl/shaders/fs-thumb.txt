@@ -20,9 +20,9 @@ void main(void) {
     float borderWidth = 1.0;
     float px = .5*(1.0+p.x)*resolution.x;
     float py = .5*(1.0+p.y)*resolution.y;
-    float border = (px<=borderWidth||py<=borderWidth||px>=resolution.x-borderWidth||py>=resolution.y-borderWidth)?1.0:0.0;
+    float border = (px<=borderWidth||py<=borderWidth||px>=resolution.x-borderWidth||py>=resolution.y-borderWidth)?0.2:0.0;
 
     float scaledRatio = ratio*0.5;
-    vec4 c = clamp((1.0-scaledRatio)*(sepia-border)+scaledRatio*(negative+border), 0.0, 1.0);
+    vec4 c = clamp((1.0-scaledRatio)*(sepia+border)+scaledRatio*(negative), 0.0, 1.0);
     gl_FragColor = vec4(c.xyz, c.a*opacity);
 }
