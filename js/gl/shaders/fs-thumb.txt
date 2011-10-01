@@ -5,6 +5,7 @@ precision highp float;
 uniform vec2 resolution;
 uniform sampler2D tex0;
 uniform float ratio;
+uniform float opacity;
 varying vec2 picturePosition;
 
 void main(void) {
@@ -20,5 +21,6 @@ void main(void) {
     float border = (px<=borderWidth||py<=borderWidth||px>=resolution.x-borderWidth||py>=resolution.y-borderWidth)?1.0:0.0;
 
     float scaledRatio = ratio*0.5;
-    gl_FragColor = clamp((1.0-scaledRatio)*(sepia-border)+scaledRatio*(negative+border), 0.0, 1.0);
+    vec4 c = clamp((1.0-scaledRatio)*(sepia-border)+scaledRatio*(negative+border), 0.0, 1.0);
+    gl_FragColor = vec4(c.xyz, c.a*opacity);
 }

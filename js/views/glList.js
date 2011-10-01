@@ -49,10 +49,10 @@ timotuominen.views.glListObject = c0mposer.create({
             });
         },
         resetShaderMatrices: function () {
-            var m = mat4.create();
-            mat4.identity(m);
-            this.setShaderMVMatrix(m);
-            this.setShaderPMatrix(m);
+            this._m = mat4.create();
+            mat4.identity(this._m);
+            this.setShaderMVMatrix(this._m);
+            this.setShaderPMatrix(this._m);
         },
         setShaderMVMatrix: function (matrix) {
             this.gl.uniformMatrix4fv(this.gl.getUniformLocation(this.shader, "uMVMatrix"), false, matrix);
@@ -78,7 +78,7 @@ timotuominen.views.glListObject = c0mposer.create({
         actualRender: function () {
             var w = this.viewportWidth;
             var h = this.viewportHeight;
-            var m = mat4.create();
+            var m = this._m = this._m || mat4.create();
 
             this.gl.viewport(0, 0, w, h);
             this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
@@ -115,6 +115,7 @@ timotuominen.views.glListObject = c0mposer.create({
 
                     this.gl.uniform2f(this.gl.getUniformLocation(this.shader, "resolution"), item.elWidth, item.elHeight);
                     this.gl.uniform1f(this.gl.getUniformLocation(this.shader, "ratio"), item.activityRatio);
+                    this.gl.uniform1f(this.gl.getUniformLocation(this.shader, "opacity"), item.elOpacity);
                     this.gl.activeTexture(this.gl.TEXTURE0);
                     this.gl.bindTexture(this.gl.TEXTURE_2D, item.texture);
                     this.gl.uniform1i(this.gl.getUniformLocation(this.shader, "tex0"), 0);
